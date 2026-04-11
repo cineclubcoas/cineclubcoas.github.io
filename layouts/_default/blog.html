@@ -1,0 +1,747 @@
+{{ define "main" }}
+
+{{/* ── Blog List Layout: La Bitácora de COAS ── */}}
+{{/* Activar con layout: "blog" en content/blog/_index.md */}}
+
+<style>
+  /* ── Design Tokens ── */
+  :root {
+    --coas-primary: #523471;
+    --coas-primary-container: #6B4C8A;
+    --coas-tertiary: #5F3738;
+    --coas-secondary: #6E528C;
+    --coas-on-surface: #221b0d;
+    --coas-on-surface-variant: #4B454F;
+    --coas-surface: #fff8f2;
+    --coas-surface-container-low: #fff2e0;
+    --coas-surface-container-high: #f5e6d0;
+    --coas-surface-container-highest: #efe1cb;
+    --coas-secondary-container: #ddbcfd;
+    --coas-on-secondary-container: #634881;
+    --coas-tertiary-fixed: #ffdad9;
+    --coas-tertiary-fixed-dim: #f1b8b8;
+    --coas-on-tertiary-fixed-variant: #643c3c;
+    --coas-primary-fixed: #f0dbff;
+    --coas-outline-variant: #cdc3d0;
+    --coas-border-decorative: #C8A8E8;
+    --coas-tag-badge: #E8B0B0;
+  }
+
+  /* ── Film Grain Overlay ── */
+  .blog-film-grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ── Layout ── */
+  .blog-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 5rem;
+  }
+  @media (min-width: 1024px) {
+    .blog-layout {
+      grid-template-columns: 7fr 3fr;
+      gap: 3.5rem;
+    }
+  }
+
+  /* ── Header ── */
+  .blog-header {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  .blog-header-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    background: var(--coas-secondary-container);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(3deg);
+    flex-shrink: 0;
+  }
+  .blog-header-icon .material-symbols-outlined {
+    font-size: 2rem;
+    color: var(--coas-primary);
+  }
+  .blog-header h1 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: var(--coas-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .blog-header p {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 1.1rem;
+    color: var(--coas-tertiary);
+    opacity: 0.8;
+    margin: 0.5rem 0 0;
+  }
+
+  /* ── Blog Card ── */
+  .blog-card {
+    background: #ffffff;
+    border-radius: 0.75rem;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 20px 50px -20px rgba(82, 52, 113, 0.08);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+  .blog-card:hover {
+    box-shadow: 0 24px 60px -16px rgba(82, 52, 113, 0.12);
+  }
+  .blog-card-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .blog-card-inner {
+      flex-direction: row;
+      gap: 2rem;
+    }
+  }
+
+  /* ── Date Badge ── */
+  .blog-date-badge {
+    position: absolute;
+    top: -0.25rem;
+    left: -0.25rem;
+    z-index: 10;
+    background: var(--coas-secondary-container);
+    color: var(--coas-on-secondary-container);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(82, 52, 113, 0.15);
+  }
+  .blog-date-badge .month {
+    display: block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    opacity: 0.7;
+    letter-spacing: 0.05em;
+  }
+  .blog-date-badge .day {
+    display: block;
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  /* ── Polaroid Image Container ── */
+  .blog-polaroid {
+    position: relative;
+    flex-shrink: 0;
+  }
+  .blog-polaroid-frame {
+    background: white;
+    padding: 0.75rem;
+    padding-bottom: 2.5rem;
+    box-shadow: 0 8px 24px rgba(34, 27, 13, 0.12);
+    border-radius: 2px;
+    transition: transform 0.5s ease;
+    width: 100%;
+    max-width: 240px;
+  }
+  .blog-card:nth-child(odd) .blog-polaroid-frame {
+    transform: rotate(1deg);
+  }
+  .blog-card:nth-child(even) .blog-polaroid-frame {
+    transform: rotate(-2deg);
+  }
+  .blog-card:hover .blog-polaroid-frame {
+    transform: rotate(0deg);
+  }
+  .blog-polaroid-img {
+    width: 100%;
+    height: 16rem;
+    object-fit: cover;
+    border-radius: 2px;
+    filter: grayscale(100%);
+    transition: filter 0.7s ease;
+  }
+  .blog-card:hover .blog-polaroid-img {
+    filter: grayscale(0%);
+  }
+  /* Fallback when no image */
+  .blog-polaroid-placeholder {
+    width: 100%;
+    height: 16rem;
+    background: var(--coas-surface-container-high);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .blog-polaroid-placeholder .material-symbols-outlined {
+    font-size: 3.5rem;
+    color: var(--coas-secondary);
+    opacity: 0.4;
+  }
+
+  /* ── Card Content ── */
+  .blog-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .blog-card-body h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--coas-primary);
+    line-height: 1.25;
+    margin: 0 0 0.75rem;
+  }
+  .blog-card-body h2 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .blog-card-body h2 a:hover {
+    opacity: 0.85;
+  }
+  .blog-card-body .summary {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.95rem;
+    color: var(--coas-on-surface-variant);
+    line-height: 1.7;
+    margin: 0 0 1rem;
+  }
+  .blog-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+  .blog-card-tags a {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    background: rgba(241, 184, 184, 0.4);
+    color: var(--coas-tertiary);
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .blog-card-tags a:hover {
+    background: var(--coas-tertiary-fixed-dim);
+  }
+
+  /* ── Read More Button ── */
+  .blog-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.6rem 1.5rem;
+    background: var(--coas-tertiary-fixed-dim);
+    color: var(--coas-on-tertiary-fixed-variant);
+    border-radius: 9999px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.1s;
+    width: fit-content;
+  }
+  .blog-read-more:hover { opacity: 0.88; }
+  .blog-read-more:active { transform: scale(0.96); }
+
+  /* ── Pagination ── */
+  .blog-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(205, 195, 208, 0.3);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .blog-pagination a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--coas-primary);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .blog-pagination a:hover { opacity: 0.6; }
+  .blog-pagination .disabled {
+    opacity: 0.25;
+    pointer-events: none;
+  }
+
+  /* ── Sidebar ── */
+  .blog-sidebar { display: flex; flex-direction: column; gap: 2.5rem; }
+
+  /* Widget: Sobre */
+  .sidebar-about {
+    background: var(--coas-surface-container-low);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .sidebar-about::before {
+    content: '';
+    position: absolute;
+    top: -2.5rem;
+    right: -2.5rem;
+    width: 8rem;
+    height: 8rem;
+    background: rgba(221, 188, 253, 0.2);
+    border-radius: 50%;
+    filter: blur(3rem);
+  }
+  .sidebar-about-avatar {
+    width: 7rem;
+    height: 7rem;
+    margin: 0 auto 1.25rem;
+    background: white;
+    border-radius: 50%;
+    padding: 0.5rem;
+    box-shadow: 0 4px 16px rgba(82, 52, 113, 0.1);
+    ring: 4px solid var(--coas-secondary-container);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: 4px solid var(--coas-secondary-container);
+  }
+  .sidebar-about-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+  .sidebar-about-avatar .material-symbols-outlined {
+    font-size: 2.5rem;
+    color: var(--coas-secondary);
+    opacity: 0.6;
+  }
+  .sidebar-about h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--coas-primary);
+    margin: 0 0 0.75rem;
+  }
+  .sidebar-about p {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.85rem;
+    color: var(--coas-on-surface-variant);
+    line-height: 1.65;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Widget: Tags */
+  .sidebar-widget h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--coas-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 1rem;
+  }
+  .sidebar-widget h3 .material-symbols-outlined {
+    color: var(--coas-tertiary);
+    font-size: 1.25rem;
+  }
+  .sidebar-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .sidebar-tags a {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.35rem 1rem;
+    border-radius: 9999px;
+    background: rgba(241, 184, 184, 0.4);
+    color: var(--coas-tertiary);
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .sidebar-tags a:hover {
+    background: var(--coas-tertiary-fixed-dim);
+  }
+
+  /* Widget: Archivo / Cineteca */
+  .sidebar-archive-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .sidebar-archive-list li a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.6rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .sidebar-archive-list li a:hover {
+    background: var(--coas-surface-container-high);
+  }
+  .sidebar-archive-list .archive-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--coas-on-surface-variant);
+  }
+  .sidebar-archive-list li a:hover .archive-label {
+    color: var(--coas-primary);
+  }
+  .sidebar-archive-list .archive-label .material-symbols-outlined {
+    color: var(--coas-secondary);
+    opacity: 0.6;
+    font-size: 1.2rem;
+  }
+  .sidebar-archive-count {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: var(--coas-secondary-container);
+    color: var(--coas-on-secondary-container);
+    padding: 0.15rem 0.6rem;
+    border-radius: 9999px;
+  }
+
+  /* Widget: Newsletter */
+  .sidebar-newsletter {
+    background: var(--coas-primary);
+    color: white;
+    border-radius: 0.75rem;
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(82, 52, 113, 0.2);
+  }
+  .sidebar-newsletter::after {
+    content: 'mail';
+    font-family: 'Material Symbols Outlined';
+    position: absolute;
+    bottom: -0.5rem;
+    right: -0.5rem;
+    font-size: 6rem;
+    opacity: 0.08;
+    pointer-events: none;
+    font-variation-settings: 'FILL' 1;
+  }
+  .sidebar-newsletter h4 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+  }
+  .sidebar-newsletter p {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.85rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    margin: 0 0 1.25rem;
+  }
+  .sidebar-newsletter input[type="email"] {
+    width: 100%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 9999px;
+    padding: 0.55rem 1rem;
+    font-size: 0.85rem;
+    color: white;
+    outline: none;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    margin-bottom: 0.75rem;
+    box-sizing: border-box;
+  }
+  .sidebar-newsletter input[type="email"]::placeholder {
+    color: rgba(255,255,255,0.4);
+  }
+  .sidebar-newsletter input[type="email"]:focus {
+    box-shadow: 0 0 0 2px var(--coas-tertiary-fixed-dim);
+  }
+  .sidebar-newsletter button {
+    width: 100%;
+    background: var(--coas-tertiary-fixed-dim);
+    color: var(--coas-on-tertiary-fixed-variant);
+    border: none;
+    border-radius: 9999px;
+    padding: 0.55rem 1rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.1s;
+  }
+  .sidebar-newsletter button:active { transform: scale(0.96); }
+
+  /* ── Empty State ── */
+  .blog-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--coas-on-surface-variant);
+    font-family: 'Be Vietnam Pro', sans-serif;
+  }
+  .blog-empty .material-symbols-outlined {
+    font-size: 4rem;
+    color: var(--coas-secondary);
+    opacity: 0.3;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  /* ── Override Blowfish body bg ── */
+  body { background-color: var(--coas-surface) !important; }
+</style>
+
+<div class="blog-film-grain"></div>
+
+{{/* ── HEADER ── */}}
+<header class="blog-header" style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem 0;">
+  <div class="blog-header-icon">
+    <span class="material-symbols-outlined">history_edu</span>
+  </div>
+  <div>
+    <h1>La Bitácora de COAS</h1>
+    <p>Reseñas, opiniones y crónicas de nuestra comunidad.</p>
+  </div>
+</header>
+
+{{/* ── MAIN GRID ── */}}
+<div class="blog-layout">
+
+  {{/* ── LEFT: BLOG FEED ── */}}
+  <section>
+
+    {{ $paginator := .Paginate .Pages 6 }}
+
+    {{ if not $paginator.Pages }}
+      <div class="blog-empty">
+        <span class="material-symbols-outlined">movie_filter</span>
+        <p>Aún no hay entradas en la bitácora. ¡Pronto vendrán las primeras funciones!</p>
+      </div>
+    {{ end }}
+
+    {{ range $index, $page := $paginator.Pages }}
+
+      {{/* Meses en español */}}
+      {{ $months := slice "Ene" "Feb" "Mar" "Abr" "May" "Jun" "Jul" "Ago" "Sep" "Oct" "Nov" "Dic" }}
+      {{ $monthIdx := sub $page.Date.Month 1 }}
+      {{ $monthStr := index $months (int $monthIdx) }}
+      {{ $day := $page.Date.Day }}
+
+      {{/* Rotación alternada del badge */}}
+      {{ $rotations := slice "rotate(-6deg)" "rotate(-2deg)" "rotate(3deg)" "rotate(-4deg)" "rotate(2deg)" "rotate(-3deg)" }}
+      {{ $rot := index $rotations (mod $index 6) }}
+
+      <article class="blog-card" style="margin-bottom:2.5rem;">
+        <div class="blog-card-inner">
+
+          {{/* ── Polaroid + Date ── */}}
+          <div class="blog-polaroid">
+            <div class="blog-date-badge" style="transform:{{ $rot }};">
+              <span class="month">{{ $monthStr }}</span>
+              <span class="day">{{ printf "%02d" $day }}</span>
+            </div>
+
+            <div class="blog-polaroid-frame">
+              {{/* Buscar feature image del post */}}
+              {{ $img := $page.Resources.GetMatch "feature*" }}
+              {{ if $img }}
+                {{ $resized := $img.Fill "480x512" }}
+                <img class="blog-polaroid-img"
+                     src="{{ $resized.RelPermalink }}"
+                     alt="{{ $page.Title }}"
+                     loading="lazy"
+                     width="240" height="256">
+              {{ else if $page.Params.image }}
+                <img class="blog-polaroid-img"
+                     src="{{ $page.Params.image }}"
+                     alt="{{ $page.Title }}"
+                     loading="lazy"
+                     width="240" height="256">
+              {{ else }}
+                {{/* Placeholder sin imagen */}}
+                <div class="blog-polaroid-placeholder">
+                  <span class="material-symbols-outlined">movie_filter</span>
+                </div>
+              {{ end }}
+            </div>
+          </div>
+
+          {{/* ── Card Body ── */}}
+          <div class="blog-card-body">
+            {{ with $page.Params.tags }}
+              <div class="blog-card-tags">
+                {{ range . }}
+                  <a href="{{ "tags/" | absURL }}{{ . | urlize }}/">{{ . }}</a>
+                {{ end }}
+              </div>
+            {{ end }}
+
+            <h2><a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a></h2>
+
+            {{ if $page.Params.summary }}
+              <p class="summary">{{ $page.Params.summary }}</p>
+            {{ else if $page.Summary }}
+              <p class="summary">{{ $page.Summary | plainify | truncate 180 }}</p>
+            {{ end }}
+
+            <a href="{{ $page.RelPermalink }}" class="blog-read-more">Leer más...</a>
+          </div>
+
+        </div>
+      </article>
+
+    {{ end }}
+
+    {{/* ── Paginación ── */}}
+    {{ if gt $paginator.TotalPages 1 }}
+      <nav class="blog-pagination">
+        {{ if $paginator.HasPrev }}
+          <a href="{{ $paginator.Prev.URL }}">
+            <span class="material-symbols-outlined" style="font-size:1rem;">arrow_back_ios</span>
+            Entradas más recientes
+          </a>
+        {{ else }}
+          <span class="disabled">
+            <span class="material-symbols-outlined" style="font-size:1rem;">arrow_back_ios</span>
+            Entradas más recientes
+          </span>
+        {{ end }}
+
+        {{ if $paginator.HasNext }}
+          <a href="{{ $paginator.Next.URL }}">
+            Entradas anteriores
+            <span class="material-symbols-outlined" style="font-size:1rem;">arrow_forward_ios</span>
+          </a>
+        {{ else }}
+          <span class="disabled">
+            Entradas anteriores
+            <span class="material-symbols-outlined" style="font-size:1rem;">arrow_forward_ios</span>
+          </span>
+        {{ end }}
+      </nav>
+    {{ end }}
+
+  </section>
+
+  {{/* ── RIGHT: SIDEBAR ── */}}
+  <aside class="blog-sidebar">
+
+    {{/* ── Widget: Tras el Telón ── */}}
+    <div class="sidebar-about">
+      <div class="sidebar-about-avatar">
+        {{/* Si tienes un logo o mascota en assets/img/, cambia esto: */}}
+        {{ $logo := resources.Get "img/logo.png" }}
+        {{ if $logo }}
+          <img src="{{ $logo.RelPermalink }}" alt="CineClub COAS">
+        {{ else }}
+          <span class="material-symbols-outlined">theater_comedy</span>
+        {{ end }}
+      </div>
+      <h3>Tras el telón</h3>
+      <p>Bienvenido a nuestra bitácora digital. Aquí guardamos los fragmentos de cine que nos mueven, desde columnas de opinión hasta crónicas de barrio.</p>
+    </div>
+
+    {{/* ── Widget: Cartelera de temas (Tags) ── */}}
+    {{ $blogTags := slice }}
+    {{ range .Pages }}
+      {{ with .Params.tags }}
+        {{ range . }}
+          {{ $blogTags = $blogTags | append . }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    {{ $blogTags = $blogTags | uniq }}
+
+    {{ if $blogTags }}
+      <div class="sidebar-widget">
+        <h3>
+          <span class="material-symbols-outlined">local_activity</span>
+          Cartelera de temas
+        </h3>
+        <div class="sidebar-tags">
+          {{ range $blogTags }}
+            <a href="{{ "tags/" | absURL }}{{ . | urlize }}/">{{ . }}</a>
+          {{ end }}
+        </div>
+      </div>
+    {{ end }}
+
+    {{/* ── Widget: La Cineteca (archivo por mes) ── */}}
+    {{ if .Pages }}
+      {{ $archive := dict }}
+      {{ range .Pages }}
+        {{ $key := .Date.Format "2006-01" }}
+        {{ $label := "" }}
+        {{/* Meses en español largo */}}
+        {{ $monthsLong := slice "Enero" "Febrero" "Marzo" "Abril" "Mayo" "Junio" "Julio" "Agosto" "Septiembre" "Octubre" "Noviembre" "Diciembre" }}
+        {{ $mIdx := sub .Date.Month 1 }}
+        {{ $label = printf "%s %d" (index $monthsLong (int $mIdx)) .Date.Year }}
+
+        {{ if isset $archive $key }}
+          {{ $current := index $archive $key }}
+          {{ $archive = merge $archive (dict $key (dict "label" $label "count" (add $current.count 1))) }}
+        {{ else }}
+          {{ $archive = merge $archive (dict $key (dict "label" $label "count" 1)) }}
+        {{ end }}
+      {{ end }}
+
+      <div class="sidebar-widget">
+        <h3>
+          <span class="material-symbols-outlined">movie_filter</span>
+          La Cineteca
+        </h3>
+        <ul class="sidebar-archive-list">
+          {{ range $key, $val := $archive }}
+            <li>
+              <a href="{{ "blog/" | absURL }}">
+                <span class="archive-label">
+                  <span class="material-symbols-outlined">folder</span>
+                  {{ $val.label }}
+                </span>
+                <span class="sidebar-archive-count">{{ $val.count }}</span>
+              </a>
+            </li>
+          {{ end }}
+        </ul>
+      </div>
+    {{ end }}
+
+    
+    </div>
+
+  </aside>
+
+</div>
+
+{{ end }}

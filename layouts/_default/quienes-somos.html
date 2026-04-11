@@ -1,0 +1,607 @@
+{{ define "main" }}
+
+{{/*
+  ═══════════════════════════════════════════════════════════
+  Layout: Quiénes Somos — CineClub COAS
+  Archivo: layouts/_default/quienes-somos.html
+
+  Paleta basada en DESIGN.md (Editorial retro-Modernism)
+  Fuentes: Plus Jakarta Sans (headlines), Be Vietnam Pro (body)
+
+  Placeholders marcados con <!-- PLACEHOLDER: ... -->
+  ═══════════════════════════════════════════════════════════
+*/}}
+
+<style>
+  /* ── Hero ── */
+  .about-hero {
+    position: relative;
+    min-height: 420px;
+    display: flex;
+    align-items: flex-end;
+    padding: 3rem 2rem;
+    border-radius: 2rem;
+    margin-bottom: 4rem;
+    overflow: hidden;
+    /* Color temporal — reemplazar con background-image cuando tengas la foto */
+    background: linear-gradient(135deg, #6B4C8A 0%, #523471 60%, #3a2050 100%);
+    /* Cuando tengas la imagen del equipo, descomenta esto y comenta el gradient:
+    background-image: url('/images/equipo-coas.jpg');
+    background-size: cover;
+    background-position: center;
+    */
+  }
+  .about-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(34, 27, 13, 0.85) 0%,
+      rgba(82, 52, 113, 0.4) 50%,
+      rgba(107, 76, 138, 0.2) 100%
+    );
+    border-radius: inherit;
+    z-index: 1;
+  }
+  .about-hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 640px;
+  }
+  .about-hero__title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    margin-bottom: 1rem;
+  }
+  .about-hero__title span {
+    color: #f1b8b8;
+  }
+  .about-hero__subtitle {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 480px;
+  }
+  .about-hero__subtitle em {
+    color: #dcb8fe;
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  /* ── Cards Misión / Visión ── */
+  .mv-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 5rem;
+  }
+  @media (min-width: 768px) {
+    .mv-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .mv-card {
+    padding: 3rem;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .mv-card--mision {
+    background-color: #ddbcfd;
+  }
+  .mv-card--vision {
+    background-color: #ffdad9;
+  }
+  .mv-card__icon {
+    font-size: 2rem;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+  }
+  .mv-card--mision .mv-card__icon {
+    color: #523471;
+    background: rgba(82, 52, 113, 0.12);
+  }
+  .mv-card--vision .mv-card__icon {
+    color: #5f3738;
+    background: rgba(95, 55, 56, 0.12);
+  }
+  .mv-card__title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+  }
+  .mv-card--mision .mv-card__title { color: #523471; }
+  .mv-card--vision .mv-card__title { color: #5f3738; }
+  .mv-card__text {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+  .mv-card--mision .mv-card__text { color: #553b72; }
+  .mv-card--vision .mv-card__text { color: #643c3c; }
+
+  /* ── Sección genérica ── */
+  .about-section {
+    margin-bottom: 5rem;
+  }
+  .about-section__title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    color: #523471;
+    text-align: center;
+    margin-bottom: 3rem;
+    letter-spacing: -0.02em;
+  }
+
+  /* ── Timeline ── */
+  .timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 1.5rem;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, #523471 0%, #ddbcfd 50%, #f1b8b8 100%);
+    border-radius: 2px;
+  }
+  @media (min-width: 768px) {
+    .timeline::before {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3.5rem;
+    padding-left: 4rem;
+  }
+  @media (min-width: 768px) {
+    .timeline-item {
+      width: 50%;
+      padding-left: 0;
+    }
+    .timeline-item--left {
+      padding-right: 3.5rem;
+      text-align: right;
+      margin-left: 0;
+    }
+    .timeline-item--right {
+      padding-left: 3.5rem;
+      margin-left: 50%;
+    }
+  }
+  .timeline-item__dot {
+    position: absolute;
+    left: calc(1.5rem - 6px);
+    top: 0.5rem;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #523471;
+    border: 4px solid #fff8f2;
+    z-index: 2;
+  }
+  .timeline-item--projection .timeline-item__dot {
+    background: #ddbcfd;
+    border-color: #fff8f2;
+  }
+  @media (min-width: 768px) {
+    .timeline-item--left .timeline-item__dot {
+      left: auto;
+      right: calc(-7.5px - 1.5px);
+    }
+    .timeline-item--right .timeline-item__dot {
+      left: calc(-7.5px - 1.5px);
+    }
+  }
+  .timeline-item__year {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 900;
+    font-size: 2.25rem;
+    color: rgba(82, 52, 113, 0.25);
+    line-height: 1;
+  }
+  .timeline-item--projection .timeline-item__year {
+    color: rgba(221, 188, 253, 0.6);
+  }
+  .timeline-item__heading {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #221b0d;
+    margin-top: 0.5rem;
+  }
+  .timeline-item__text {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.95rem;
+    color: #4b454f;
+    line-height: 1.65;
+    margin-top: 0.35rem;
+  }
+  .timeline-item__badge {
+    display: inline-block;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #523471;
+    background: #f0dbff;
+    padding: 0.2rem 0.75rem;
+    border-radius: 9999px;
+    margin-top: 0.5rem;
+  }
+
+  /* ── Equipo ── */
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  @media (min-width: 768px) {
+    .team-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .team-card {
+    background: #fff2e0;
+    padding: 2rem;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+    transition: background 0.3s ease;
+  }
+  @media (min-width: 640px) {
+    .team-card {
+      flex-direction: row;
+      text-align: left;
+      align-items: center;
+    }
+  }
+  .team-card:hover {
+    background: #f5e6d0;
+  }
+  .team-card__avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 4px solid rgba(82, 52, 113, 0.1);
+    background: linear-gradient(135deg, #ddbcfd, #f1b8b8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .team-card__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .team-card__avatar-placeholder {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    color: #523471;
+  }
+  .team-card__name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: #221b0d;
+  }
+  .team-card__role {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #523471;
+    margin-top: 0.15rem;
+  }
+  .team-card__bio {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.9rem;
+    color: #4b454f;
+    line-height: 1.6;
+    margin-top: 0.35rem;
+    font-style: italic;
+  }
+
+  /* ── Aliados ── */
+  .allies-container {
+    background: #efe1cb;
+    border-radius: 2rem;
+    padding: 4rem 2rem;
+  }
+  .allies-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+  }
+  @media (min-width: 768px) {
+    .allies-grid { gap: 5rem; }
+  }
+  .ally-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+  }
+  .ally-item:hover {
+    opacity: 1;
+  }
+  .ally-item__icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 1rem;
+    background: rgba(82, 52, 113, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+    font-size: 2rem;
+    color: #523471;
+  }
+  .ally-item:hover .ally-item__icon {
+    background: rgba(82, 52, 113, 0.2);
+  }
+  .ally-item__label {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #4b454f;
+    text-align: center;
+    max-width: 120px;
+  }
+  .ally-item--placeholder {
+    opacity: 0.3;
+  }
+  .ally-item--placeholder .ally-item__icon {
+    border: 2px dashed rgba(82, 52, 113, 0.2);
+    background: transparent;
+  }
+
+  /* ── Contenedor general ── */
+  .about-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+</style>
+
+<div class="about-wrap">
+
+  {{/* ═══════════════ HERO ═══════════════ */}}
+  <section class="about-hero">
+    <div class="about-hero__content">
+      <h1 class="about-hero__title">
+        Quiénes <span>Somos</span>
+      </h1>
+      <p class="about-hero__subtitle">
+        Democratizando el cine y construyendo comunidad a través de la cultura
+        y el deporte en el corazón de <em>Santiago, Chile.</em>
+      </p>
+    </div>
+  </section>
+
+  {{/* ═══════════════ MISIÓN & VISIÓN ═══════════════ */}}
+  <section class="about-section">
+    <div class="mv-grid">
+
+      <div class="mv-card mv-card--mision">
+        <div class="mv-card__icon">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+        </div>
+        <h2 class="mv-card__title">Misión</h2>
+        <p class="mv-card__text">
+          Promover el acceso al cine como experiencia cultural colectiva,
+          mediante la realización de exhibiciones y actividades de mediación
+          en distintos territorios, fomentando la apreciación cinematográfica
+          y el encuentro comunitario.
+        </p>
+      </div>
+
+      <div class="mv-card mv-card--vision">
+        <div class="mv-card__icon">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">visibility</span>
+        </div>
+        <h2 class="mv-card__title">Visión</h2>
+        <p class="mv-card__text">
+          Consolidarnos como un proyecto de exhibición que articule redes
+          culturales y territoriales, contribuyendo a descentralizar el
+          acceso al cine y posicionándolo como una herramienta relevante
+          para la vida cultural y social de las comunidades.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  {{/* ═══════════════ NUESTRA HISTORIA ═══════════════ */}}
+  <section class="about-section">
+    <h2 class="about-section__title">Nuestra Historia</h2>
+
+    <div class="timeline">
+
+      {{/* ── 2024 ── */}}
+      <div class="timeline-item timeline-item--left">
+        <div class="timeline-item__dot"></div>
+        <div class="timeline-item__year">2024</div>
+        <div class="timeline-item__heading">
+          <!-- PLACEHOLDER: Título del hito 2024 -->
+          Título del hito 2024
+        </div>
+        <p class="timeline-item__text">
+          <!-- PLACEHOLDER: Descripción breve (1-2 oraciones) -->
+          Descripción breve de lo que ocurrió en 2024.
+        </p>
+      </div>
+
+      {{/* ── 2025 ── */}}
+      <div class="timeline-item timeline-item--right">
+        <div class="timeline-item__dot"></div>
+        <div class="timeline-item__year">2025</div>
+        <div class="timeline-item__heading">
+          <!-- PLACEHOLDER: Título del hito 2025 -->
+          Título del hito 2025
+        </div>
+        <p class="timeline-item__text">
+          <!-- PLACEHOLDER: Descripción breve (1-2 oraciones) -->
+          Descripción breve de lo que ocurrió en 2025.
+        </p>
+      </div>
+
+      {{/* ── 2026 ── */}}
+      <div class="timeline-item timeline-item--left">
+        <div class="timeline-item__dot"></div>
+        <div class="timeline-item__year">2026</div>
+        <div class="timeline-item__heading">
+          <!-- PLACEHOLDER: Título del hito 2026 -->
+          Título del hito 2026
+        </div>
+        <p class="timeline-item__text">
+          <!-- PLACEHOLDER: Descripción breve (1-2 oraciones) -->
+          Descripción breve de lo que está pasando en 2026.
+        </p>
+      </div>
+
+      {{/* ── 2027 (Proyección) ── */}}
+      <div class="timeline-item timeline-item--right timeline-item--projection">
+        <div class="timeline-item__dot"></div>
+        <div class="timeline-item__year">2027</div>
+        <div class="timeline-item__heading">
+          <!-- PLACEHOLDER: Título de la proyección 2027 -->
+          Proyección 2027
+        </div>
+        <p class="timeline-item__text">
+          <!-- PLACEHOLDER: Descripción de lo que se proyecta (1-2 oraciones) -->
+          Lo que aspiramos lograr en 2027.
+        </p>
+        <span class="timeline-item__badge">Proyección</span>
+      </div>
+
+    </div>
+  </section>
+
+  {{/* ═══════════════ NUESTRO EQUIPO ═══════════════ */}}
+  <section class="about-section">
+    <h2 class="about-section__title">Nuestro Equipo</h2>
+
+    <div class="team-grid">
+
+      {{/* ── Pablo Zúñiga Saa ── */}}
+      <div class="team-card">
+        <div class="team-card__avatar">
+          <!-- Reemplazar placeholder con: <img src="/images/equipo/pablo.jpg" alt="Pablo Zúñiga Saa"> -->
+          <span class="team-card__avatar-placeholder">PZ</span>
+        </div>
+        <div>
+          <div class="team-card__name">Pablo Zúñiga Saa</div>
+          <div class="team-card__role">Fundador y Curador</div>
+          <p class="team-card__bio">
+            Antropólogo · Universidad de Chile
+          </p>
+        </div>
+      </div>
+
+      {{/* ── Lucas Zepeda ── */}}
+      <div class="team-card">
+        <div class="team-card__avatar">
+          <!-- Reemplazar placeholder con: <img src="/images/equipo/lucas.jpg" alt="Lucas Zepeda"> -->
+          <span class="team-card__avatar-placeholder">LZ</span>
+        </div>
+        <div>
+          <div class="team-card__name">Lucas Zepeda</div>
+          <div class="team-card__role">Co-fundador</div>
+          <p class="team-card__bio">
+            Trabajador Social · PUCV
+          </p>
+        </div>
+      </div>
+
+      {{/* ── Tercer miembro (descomentar cuando esté listo) ──
+      <div class="team-card">
+        <div class="team-card__avatar">
+          <span class="team-card__avatar-placeholder">??</span>
+        </div>
+        <div>
+          <div class="team-card__name">Nombre</div>
+          <div class="team-card__role">Rol</div>
+          <p class="team-card__bio">Breve descripción</p>
+        </div>
+      </div>
+      */}}
+
+    </div>
+  </section>
+
+  {{/* ═══════════════ ALIADOS Y AMIGOS ═══════════════ */}}
+  <section class="about-section">
+    <div class="allies-container">
+      <h2 class="about-section__title" style="margin-bottom: 2.5rem;">Aliados y Amigos</h2>
+
+      <div class="allies-grid">
+
+        <div class="ally-item">
+          <div class="ally-item__icon">
+            <span class="material-symbols-outlined">theater_comedy</span>
+          </div>
+          <span class="ally-item__label">Asociación de Cineclubes de Chile</span>
+        </div>
+
+        {{/* Placeholders para futuros aliados */}}
+        <div class="ally-item ally-item--placeholder">
+          <div class="ally-item__icon">
+            <span class="material-symbols-outlined">add</span>
+          </div>
+          <span class="ally-item__label">Próximo aliado</span>
+        </div>
+
+        <div class="ally-item ally-item--placeholder">
+          <div class="ally-item__icon">
+            <span class="material-symbols-outlined">add</span>
+          </div>
+          <span class="ally-item__label">Próximo aliado</span>
+        </div>
+
+        <div class="ally-item ally-item--placeholder">
+          <div class="ally-item__icon">
+            <span class="material-symbols-outlined">add</span>
+          </div>
+          <span class="ally-item__label">Próximo aliado</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+
+{{ end }}

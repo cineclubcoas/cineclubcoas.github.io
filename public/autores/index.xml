@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Autores on CineClub COAS</title>
+    <link>http://localhost:1313/autores/</link>
+    <description>Recent content in Autores on CineClub COAS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es</language>
+    <copyright>© 2026 </copyright>
+    <lastBuildDate>Wed, 25 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/autores/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Pablo Zúñiga</title>
+      <link>http://localhost:1313/autores/pablo-z%C3%BA%C3%B1iga/</link>
+      <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/autores/pablo-z%C3%BA%C3%B1iga/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

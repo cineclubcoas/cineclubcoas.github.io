@@ -1,0 +1,607 @@
+{{/* layouts/_default/agenda.html */}}
+{{ define "main" }}
+
+<style>
+/* ═══════════════════════════════════════════
+   AGENDA COAS — Layout Styles
+   Tokens from DESIGN.md / design system
+   ═══════════════════════════════════════════ */
+
+/* ── Film Grain (consistent with other layouts) ── */
+.agenda-grain {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none; z-index: 9999; opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Page Header ── */
+.agenda-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+.agenda-header h1 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  color: #523471;
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.agenda-header .header-icon {
+  font-size: 2.5rem;
+  color: #523471;
+  font-variation-settings: 'FILL' 1;
+}
+
+/* ── Hero Spotlight (Evento Destacado) ── */
+.agenda-hero {
+  background: #f1b8b8;
+  border-radius: 3rem;
+  padding: 3rem;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow: hidden;
+  position: relative;
+  /* ticket cut effect */
+  mask-image:
+    radial-gradient(circle at 0 50%, transparent 18px, black 19px),
+    radial-gradient(circle at 100% 50%, transparent 18px, black 19px);
+  -webkit-mask-image:
+    radial-gradient(circle at 0 50%, transparent 18px, black 19px),
+    radial-gradient(circle at 100% 50%, transparent 18px, black 19px);
+  -webkit-mask-composite: destination-in;
+  mask-composite: intersect;
+  box-shadow: 0 20px 50px rgba(34, 27, 13, 0.12);
+}
+
+@media (min-width: 768px) {
+  .agenda-hero {
+    flex-direction: row;
+    align-items: center;
+    padding: 3rem 4rem;
+    gap: 3rem;
+  }
+}
+
+.agenda-hero__content {
+  flex: 1;
+  z-index: 2;
+}
+
+.agenda-hero__badge {
+  display: inline-block;
+  background: #523471;
+  color: #fff8f2;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.agenda-hero__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #221b0d;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .agenda-hero__title { font-size: 3.5rem; }
+}
+
+.agenda-hero__desc {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 1.05rem;
+  color: rgba(34, 27, 13, 0.8);
+  line-height: 1.7;
+  max-width: 36rem;
+  margin-bottom: 1.5rem;
+}
+
+.agenda-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(34, 27, 13, 0.7);
+}
+
+.agenda-hero__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.agenda-hero__meta-item .material-symbols-outlined {
+  font-size: 1.2rem;
+  color: #523471;
+}
+
+.agenda-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #523471, #6B4C8A);
+  color: #fff8f2;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 1rem 2.5rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 10px 40px rgba(82, 52, 113, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.agenda-hero__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 50px rgba(82, 52, 113, 0.3);
+}
+
+.agenda-hero__image {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(34, 27, 13, 0.15);
+  position: relative;
+  background: #efe1cb;
+}
+
+@media (min-width: 768px) {
+  .agenda-hero__image { width: 45%; }
+}
+
+.agenda-hero__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.agenda-hero__image-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+}
+
+/* ── Upcoming Activities List ── */
+.agenda-upcoming {
+  margin-bottom: 4rem;
+}
+
+.agenda-upcoming__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #523471;
+  letter-spacing: -0.01em;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.agenda-upcoming__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.agenda-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid rgba(34, 27, 13, 0.07);
+  border-radius: 1.5rem;
+  transition: background 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+@media (min-width: 768px) {
+  .agenda-item { gap: 2rem; padding: 2rem 1.5rem; }
+}
+
+.agenda-item:hover {
+  background: #fff2e0;
+}
+
+.agenda-item__date {
+  flex-shrink: 0;
+  width: 4.5rem;
+  height: 4.5rem;
+  background: #ddbcfd;
+  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(82, 52, 113, 0.08);
+}
+
+@media (min-width: 768px) {
+  .agenda-item__date { width: 5.5rem; height: 5.5rem; }
+}
+
+.agenda-item__day {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #523471;
+  line-height: 1;
+}
+
+.agenda-item__month {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #6B4C8A;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.agenda-item__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.agenda-item__tags {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.agenda-item__tag {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #5f3738;
+  background: #ffdad9;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.agenda-item__location {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 0.8rem;
+  color: rgba(34, 27, 13, 0.5);
+}
+
+.agenda-item__name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #221b0d;
+  margin: 0;
+  line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+  .agenda-item__name { font-size: 1.4rem; }
+}
+
+.agenda-item__arrow {
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  color: rgba(82, 52, 113, 0.2);
+  transition: color 0.3s ease;
+}
+
+.agenda-item:hover .agenda-item__arrow {
+  color: #523471;
+}
+
+/* ── Empty State ── */
+.agenda-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #fff2e0;
+  border-radius: 3rem;
+  margin-bottom: 4rem;
+}
+
+.agenda-empty__icon {
+  font-size: 3rem;
+  color: #6B4C8A;
+  margin-bottom: 1rem;
+}
+
+.agenda-empty__text {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 1.1rem;
+  color: #4B454F;
+  line-height: 1.7;
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.agenda-empty__text a {
+  color: #523471;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: #C8A8E8;
+  text-underline-offset: 3px;
+}
+
+/* ── Inscriptions CTA Section ── */
+.agenda-cta {
+  background: #fff2e0;
+  border: 3px dashed rgba(82, 52, 113, 0.15);
+  border-radius: 3rem;
+  padding: 3rem 2rem;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .agenda-cta {
+    flex-direction: row;
+    padding: 4rem;
+    gap: 3rem;
+  }
+}
+
+.agenda-cta__content {
+  flex: 1;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .agenda-cta__content { text-align: left; }
+}
+
+.agenda-cta__heading {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #221b0d;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .agenda-cta__heading { justify-content: flex-start; font-size: 2rem; }
+}
+
+.agenda-cta__mascot-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex-direction: column;
+}
+
+@media (min-width: 640px) {
+  .agenda-cta__mascot-wrap { flex-direction: row; }
+}
+
+.agenda-cta__mascot {
+  width: 7rem;
+  height: 7rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: white;
+  padding: 0.5rem;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+.agenda-cta__mascot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.agenda-cta__text {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 1.05rem;
+  color: rgba(34, 27, 13, 0.7);
+  line-height: 1.7;
+  max-width: 28rem;
+}
+
+.agenda-cta__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f1b8b8;
+  color: #5f3738;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 8px 30px rgba(95, 55, 56, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 1rem;
+}
+
+.agenda-cta__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(95, 55, 56, 0.18);
+}
+
+/* ── Wrapper ── */
+.agenda-wrapper {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 3rem 1rem 4rem;
+}
+
+@media (min-width: 768px) {
+  .agenda-wrapper { padding: 4rem 2rem 6rem; }
+}
+</style>
+
+<div class="agenda-grain"></div>
+
+<div class="agenda-wrapper">
+
+  <!-- ═══ Page Header ═══ -->
+  <div class="agenda-header">
+    <span class="material-symbols-outlined header-icon">calendar_today</span>
+    <h1>Agenda COAS</h1>
+  </div>
+
+  <!-- ═══ Hero: Evento Destacado ═══ -->
+  {{ with .Params.evento_destacado }}
+  <section class="agenda-hero">
+    <div class="agenda-hero__content">
+      <span class="agenda-hero__badge">{{ .badge | default "Próximamente" }}</span>
+      <h2 class="agenda-hero__title">{{ .titulo }}</h2>
+      <p class="agenda-hero__desc">{{ .descripcion }}</p>
+      <div class="agenda-hero__meta">
+        {{ with .fecha }}
+        <div class="agenda-hero__meta-item">
+          <span class="material-symbols-outlined">event</span>
+          <span>{{ . }}</span>
+        </div>
+        {{ end }}
+        {{ with .lugar }}
+        <div class="agenda-hero__meta-item">
+          <span class="material-symbols-outlined">location_on</span>
+          <span>{{ . }}</span>
+        </div>
+        {{ end }}
+        {{ with .hora }}
+        <div class="agenda-hero__meta-item">
+          <span class="material-symbols-outlined">schedule</span>
+          <span>{{ . }}</span>
+        </div>
+        {{ end }}
+        {{ with .entrada }}
+        <div class="agenda-hero__meta-item">
+          <span class="material-symbols-outlined">confirmation_number</span>
+          <span>{{ . }}</span>
+        </div>
+        {{ end }}
+      </div>
+      {{ with .enlace }}
+      <a href="{{ . }}" class="agenda-hero__cta" target="_blank" rel="noopener">Más información</a>
+      {{ end }}
+    </div>
+    {{ with .imagen }}
+    <div class="agenda-hero__image">
+      {{ $img := resources.Get . }}
+      {{ if $img }}
+      <img src="{{ $img.RelPermalink }}" alt="{{ $.Params.evento_destacado.titulo }}" loading="lazy">
+      {{ else }}
+      <img src="{{ . | relURL }}" alt="{{ $.Params.evento_destacado.titulo }}" loading="lazy">
+      {{ end }}
+      <div class="agenda-hero__image-gradient"></div>
+    </div>
+    {{ end }}
+  </section>
+  {{ end }}
+
+  <!-- ═══ Próximas Actividades ═══ -->
+  {{ with .Params.proximas }}
+  <section class="agenda-upcoming">
+    <h3 class="agenda-upcoming__title">Próximas Actividades</h3>
+    <div class="agenda-upcoming__list">
+      {{ range . }}
+      <{{ if .enlace }}a href="{{ .enlace }}"{{ else }}div{{ end }} class="agenda-item">
+        <div class="agenda-item__date">
+          <span class="agenda-item__day">{{ .dia }}</span>
+          <span class="agenda-item__month">{{ .mes }}</span>
+        </div>
+        <div class="agenda-item__info">
+          <div class="agenda-item__tags">
+            {{ with .tipo }}
+            <span class="agenda-item__tag">{{ . }}</span>
+            {{ end }}
+            {{ with .lugar }}
+            <span class="agenda-item__location">• {{ . }}</span>
+            {{ end }}
+          </div>
+          <h4 class="agenda-item__name">{{ .titulo }}</h4>
+        </div>
+        <span class="material-symbols-outlined agenda-item__arrow">arrow_forward_ios</span>
+      </{{ if .enlace }}a{{ else }}div{{ end }}>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  <!-- ═══ Empty State (si no hay eventos) ═══ -->
+  {{ if and (not .Params.evento_destacado) (not .Params.proximas) }}
+  <section class="agenda-empty">
+    <div class="agenda-empty__icon">
+      <span class="material-symbols-outlined" style="font-size: inherit;">event_busy</span>
+    </div>
+    <p class="agenda-empty__text">
+      Estamos coordinando nuestras próximas actividades.<br>
+      Síguenos en <a href="https://instagram.com/cineclubcoas" target="_blank" rel="noopener">@cineclubcoas</a> para enterarte primero.
+    </p>
+  </section>
+  {{ end }}
+
+  <!-- ═══ CTA Inscripciones ═══ -->
+  <section class="agenda-cta">
+    <div class="agenda-cta__content">
+      <h2 class="agenda-cta__heading">
+        <span class="material-symbols-outlined" style="color: #523471;">smartphone</span>
+        Inscripciones y Actualizaciones
+        <span class="material-symbols-outlined" style="color: #5f3738; font-variation-settings: 'FILL' 1;">favorite</span>
+      </h2>
+      <div class="agenda-cta__mascot-wrap">
+        <div class="agenda-cta__mascot">
+          {{/* Usa el pingüino social o el logo principal */}}
+          {{ $mascot := resources.Get "img/pinguino_social.webp" }}
+          {{ if $mascot }}
+          <img src="{{ $mascot.RelPermalink }}" alt="Pingüino COAS" loading="lazy">
+          {{ else }}
+          {{ $logo := resources.Get "img/logo.webp" }}
+          {{ if $logo }}
+          <img src="{{ $logo.RelPermalink }}" alt="COAS" loading="lazy">
+          {{ end }}
+          {{ end }}
+        </div>
+        <p class="agenda-cta__text">
+          Para asegurar tu cupo en nuestras actividades, recuerda que todas las inscripciones se gestionan vía DM en nuestro Instagram. ¡No te quedes fuera!
+        </p>
+      </div>
+      <a href="https://instagram.com/cineclubcoas" class="agenda-cta__button" target="_blank" rel="noopener">
+        Ver inscripciones en @cineclubcoas
+      </a>
+    </div>
+  </section>
+
+</div>
+{{ end }}

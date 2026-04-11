@@ -1,0 +1,29 @@
+<!-- ============ FOOTER COAS ============ -->
+<div style="background-color: #2D1B42; border-radius: 3rem 3rem 0 0; padding: 4rem 2rem; margin-top: 4rem;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2rem;">
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        {{ $logofooter := resources.Get "img/logo-coas-transparente.png" }}
+        {{ if $logofooter }}
+          <img src="{{ $logofooter.RelPermalink }}" alt="COAS" style="height: 3rem; width: 3rem; border-radius: 50%;">
+        {{ end }}
+        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.5rem; font-weight: 900; color: #FFF8F2; font-style: italic; letter-spacing: -0.02em;">
+          CineClub COAS
+        </span>
+      </div>
+      <p style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 0.875rem; color: rgba(255,248,242,0.6); max-width: 300px; line-height: 1.6;">
+        CineClub Cultural y Deportivo Chicken On A Stick.<br>
+        Promoviendo la cultura y el deporte comunitario desde 2026.
+      </p>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 1.5rem;">
+      <nav style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+        <a href="https://instagram.com/cineclubcoas" style="color: rgba(255,248,242,0.8); text-decoration: none; font-size: 0.875rem; font-family: 'Be Vietnam Pro', sans-serif;">Instagram</a>
+        <a href="https://www.youtube.com/@CineClubCOAS" style="color: rgba(255,248,242,0.8); text-decoration: none; font-size: 0.875rem; font-family: 'Be Vietnam Pro', sans-serif;">YouTube</a>
+      </nav>
+      <p style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 0.875rem; color: rgba(255,248,242,0.4);">
+        © 2026 CineClub COAS Santiago. Hecho con amor por el cine.
+      </p>
+    </div>
+  </div>
+</div>

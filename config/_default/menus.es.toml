@@ -1,0 +1,46 @@
+[[main]]
+  name = "Quiénes Somos"
+  pageRef = "quienes-somos"
+  weight = 10
+
+[[main]]
+  name = "Blog"
+  pageRef = "blog"
+  weight = 20
+
+[[main]]
+  name = "Proyectos"
+  pageRef = "proyectos"
+  weight = 30
+
+[[main]]
+  name = "YouTube"
+  pageRef = "youtube"
+  weight = 40
+
+[[main]]
+  name = "Agenda"
+  pageRef = "agenda"
+  weight = 50
+
+[[main]]
+  name = "Transparencia"
+  pageRef = "transparencia"
+  weight = 60
+
+[[main]]
+  name = "Contacto"
+  pageRef = "contacto"
+  weight = 70
+
+# Menú del footer (pie de página)
+
+[[footer]]
+  name = "Contacto"
+  pageRef = "contacto"
+  weight = 10
+
+[[footer]]
+  name = "Transparencia"
+  pageRef = "transparencia"
+  weight = 20

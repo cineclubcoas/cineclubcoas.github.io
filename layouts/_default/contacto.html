@@ -1,0 +1,383 @@
+{{ define "main" }}
+
+{{/* ── Contacto Layout: Conversemos ── */}}
+{{/* Activar con layout: "contacto" en content/contacto/_index.md */}}
+
+<style>
+  :root {
+    --coas-primary: #523471;
+    --coas-primary-container: #6B4C8A;
+    --coas-tertiary: #5F3738;
+    --coas-secondary: #6E528C;
+    --coas-on-surface: #221b0d;
+    --coas-on-surface-variant: #4B454F;
+    --coas-surface: #fff8f2;
+    --coas-surface-container-low: #fff2e0;
+    --coas-surface-container-high: #f5e6d0;
+    --coas-surface-container-highest: #efe1cb;
+    --coas-secondary-container: #ddbcfd;
+    --coas-on-secondary-container: #634881;
+    --coas-tertiary-fixed: #ffdad9;
+    --coas-tertiary-fixed-dim: #f1b8b8;
+    --coas-on-tertiary-fixed-variant: #643c3c;
+    --coas-primary-fixed: #f0dbff;
+    --coas-outline-variant: #cdc3d0;
+  }
+
+  .contact-grain {
+    position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body { background-color: var(--coas-surface) !important; }
+
+  /* ── Page ── */
+  .contact-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 5rem;
+  }
+
+  /* ── Hero Header ── */
+  .contact-hero {
+    text-align: center;
+    max-width: 42rem;
+    margin: 0 auto 4rem;
+  }
+  .contact-hero h1 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(3rem, 7vw, 5rem);
+    font-weight: 800;
+    color: var(--coas-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin: 0 0 1.25rem;
+  }
+  .contact-hero p {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 1.15rem;
+    color: var(--coas-on-surface-variant);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ── Territorial Presence ── */
+  .contact-territory {
+    background: rgba(221, 188, 253, 0.3);
+    border-radius: 1.5rem;
+    padding: 3rem;
+    margin-bottom: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-territory::before {
+    content: '';
+    position: absolute;
+    top: -3rem; right: -3rem;
+    width: 12rem; height: 12rem;
+    background: rgba(82, 52, 113, 0.04);
+    border-radius: 50%;
+    filter: blur(3rem);
+    pointer-events: none;
+  }
+  .contact-territory-text {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+  }
+  .contact-territory-text h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--coas-primary);
+    margin: 0 0 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .contact-territory-text h2 .material-symbols-outlined {
+    font-size: 1.75rem;
+    color: var(--coas-primary);
+  }
+  .contact-territory-text p {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 1rem;
+    color: var(--coas-on-secondary-container);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .contact-territory-icons {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .contact-region-card {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 50px -15px rgba(110, 82, 140, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    transition: transform 0.3s ease;
+  }
+  .contact-region-card:hover {
+    transform: translateY(-4px);
+  }
+  .contact-region-card .material-symbols-outlined {
+    font-size: 2.5rem;
+    color: var(--coas-primary);
+  }
+  .contact-region-card span:last-child {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--coas-primary);
+  }
+  @media (max-width: 700px) {
+    .contact-territory {
+      flex-direction: column;
+      text-align: center;
+      padding: 2rem;
+    }
+    .contact-territory-text h2 {
+      justify-content: center;
+    }
+  }
+
+  /* ── Directory Label ── */
+  .contact-directory-label {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .contact-directory-label span {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--coas-on-tertiary-fixed-variant);
+    background: rgba(241, 184, 184, 0.3);
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+  }
+
+  /* ── Contact Cards Grid ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 4rem;
+  }
+  @media (min-width: 768px) {
+    .contact-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .contact-card {
+    background: white;
+    padding: 2.5rem 1.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 50px -15px rgba(232, 176, 176, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    transition: background 0.3s ease;
+    text-decoration: none;
+  }
+  .contact-card:hover {
+    background: var(--coas-surface);
+  }
+  .contact-card-icon {
+    width: 4rem;
+    height: 4rem;
+    background: rgba(107, 76, 138, 0.08);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+    transition: transform 0.3s ease;
+  }
+  .contact-card:hover .contact-card-icon {
+    transform: scale(1.1);
+  }
+  .contact-card-icon .material-symbols-outlined {
+    font-size: 1.75rem;
+    color: var(--coas-primary);
+  }
+  .contact-card-label {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--coas-on-surface-variant);
+  }
+  .contact-card-value {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--coas-primary);
+    word-break: break-all;
+  }
+
+  /* ── CTA / Mascot Section ── */
+  .contact-cta {
+    background: rgba(245, 230, 208, 0.5);
+    border-radius: 1.5rem;
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(241, 184, 184, 0.08), transparent);
+    pointer-events: none;
+  }
+  .contact-cta-img {
+    width: 14rem;
+    height: 14rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .contact-cta-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .contact-cta-body {
+    position: relative;
+    z-index: 1;
+  }
+  .contact-cta-body h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: var(--coas-primary);
+    margin: 0 0 0.75rem;
+    line-height: 1.15;
+  }
+  .contact-cta-body p {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 1.1rem;
+    color: var(--coas-on-surface-variant);
+    line-height: 1.6;
+    margin: 0;
+  }
+  @media (max-width: 700px) {
+    .contact-cta {
+      flex-direction: column;
+      text-align: center;
+      padding: 2rem;
+    }
+    .contact-cta-img {
+      width: 10rem;
+      height: 10rem;
+    }
+  }
+</style>
+
+<div class="contact-grain"></div>
+
+<main class="contact-page">
+
+  {{/* ── HERO ── */}}
+  <header class="contact-hero">
+    <h1>Conversemos</h1>
+    <p>¿Quieres llevar una función de cine a tu barrio? ¿Tienes una organización comunitaria y te interesa coordinarte con nosotros? Estamos abiertos a colaborar.</p>
+  </header>
+
+  {{/* ── PRESENCIA TERRITORIAL ── */}}
+  <section class="contact-territory">
+    <div class="contact-territory-text">
+      <h2>
+        <span class="material-symbols-outlined">location_on</span>
+        Presencia Territorial
+      </h2>
+      <p>Nuestras acciones se despliegan en la V Región de Valparaíso y la Región Metropolitana de Chile. Tejemos redes entre los cerros y la ciudad.</p>
+    </div>
+    <div class="contact-territory-icons">
+      <div class="contact-region-card">
+        <span class="material-symbols-outlined">anchor</span>
+        <span>Valparaíso</span>
+      </div>
+      <div class="contact-region-card">
+        <span class="material-symbols-outlined">apartment</span>
+        <span>Santiago</span>
+      </div>
+    </div>
+  </section>
+
+  {{/* ── DIRECTORIO DE CONTACTO ── */}}
+  <div class="contact-directory-label">
+    <span>Directorio de Contacto</span>
+  </div>
+
+  <div class="contact-grid">
+    <a href="mailto:cineclubcoas@gmail.com" class="contact-card">
+      <div class="contact-card-icon">
+        <span class="material-symbols-outlined">mail</span>
+      </div>
+      <span class="contact-card-label">Correo</span>
+      <span class="contact-card-value">cineclubcoas@gmail.com</span>
+    </a>
+
+    <a href="tel:+56974027033" class="contact-card">
+      <div class="contact-card-icon">
+        <span class="material-symbols-outlined">phone_iphone</span>
+      </div>
+      <span class="contact-card-label">Llámanos</span>
+      <span class="contact-card-value">+569 74027033</span>
+    </a>
+
+    <a href="https://instagram.com/cineclubcoas" target="_blank" rel="noopener" class="contact-card">
+      <div class="contact-card-icon">
+        <span class="material-symbols-outlined">photo_camera</span>
+      </div>
+      <span class="contact-card-label">Instagram</span>
+      <span class="contact-card-value">@cineclubcoas</span>
+    </a>
+
+    <a href="https://www.youtube.com/@CineClubCOAS" target="_blank" rel="noopener" class="contact-card">
+      <div class="contact-card-icon">
+        <span class="material-symbols-outlined">tv</span>
+      </div>
+      <span class="contact-card-label">YouTube</span>
+      <span class="contact-card-value">CineClub COAS</span>
+    </a>
+  </div>
+
+  {{/* ── CTA CON MASCOTA ── */}}
+  <section class="contact-cta">
+    <div class="contact-cta-img">
+      {{ $mascot := resources.Get "img/pinguino_social.webp" }}
+      {{ if $mascot }}
+        <img src="{{ $mascot.RelPermalink }}" alt="Pingüino COAS" loading="lazy">
+      {{ else }}
+        {{ $logo := resources.Get "img/logo.png" }}
+        {{ if $logo }}
+          <img src="{{ $logo.RelPermalink }}" alt="CineClub COAS" loading="lazy">
+        {{ end }}
+      {{ end }}
+    </div>
+    <div class="contact-cta-body">
+      <h3>¡Esperamos tu mensaje!</h3>
+      <p>Respondemos a la brevedad. Si tienes un espacio comunitario, una junta de vecinos o un colegio interesado, escríbenos y coordinamos.</p>
+    </div>
+  </section>
+
+</main>
+
+{{ end }}

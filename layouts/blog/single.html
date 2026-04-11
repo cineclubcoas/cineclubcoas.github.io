@@ -1,0 +1,583 @@
+{{ define "main" }}
+
+{{/* ── Single Blog Post Layout: CineClub COAS ── */}}
+{{/* Se activa automáticamente para posts dentro de content/blog/ */}}
+
+<style>
+  /* ── Design Tokens ── */
+  :root {
+    --coas-primary: #523471;
+    --coas-primary-container: #6B4C8A;
+    --coas-tertiary: #5F3738;
+    --coas-secondary: #6E528C;
+    --coas-on-surface: #221b0d;
+    --coas-on-surface-variant: #4B454F;
+    --coas-surface: #fff8f2;
+    --coas-surface-container-low: #fff2e0;
+    --coas-surface-container-high: #f5e6d0;
+    --coas-surface-container-highest: #efe1cb;
+    --coas-secondary-container: #ddbcfd;
+    --coas-on-secondary-container: #634881;
+    --coas-tertiary-fixed: #ffdad9;
+    --coas-tertiary-fixed-dim: #f1b8b8;
+    --coas-on-tertiary-fixed: #311213;
+    --coas-on-tertiary-fixed-variant: #643c3c;
+    --coas-primary-fixed: #f0dbff;
+    --coas-outline-variant: #cdc3d0;
+    --coas-border-decorative: #C8A8E8;
+  }
+
+  /* ── Film Grain ── */
+  .post-film-grain {
+    position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  body { background-color: var(--coas-surface) !important; }
+
+  /* ── Post Header ── */
+  .post-header {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem 2.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .post-tag-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: var(--coas-tertiary-fixed-dim);
+    color: var(--coas-on-tertiary-fixed);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .post-tag-badge:hover { opacity: 0.8; }
+  .post-header h1 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: var(--coas-primary);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 800px;
+    margin: 0;
+  }
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.9rem;
+    color: var(--coas-on-surface-variant);
+    font-weight: 500;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .post-meta-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--coas-outline-variant);
+    flex-shrink: 0;
+  }
+
+  /* ── Feature Image ── */
+  .post-feature {
+    max-width: 1100px;
+    margin: 0 auto 3rem;
+    padding: 0 1.5rem;
+  }
+  .post-feature-inner {
+    position: relative;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 40px 80px -20px rgba(82, 52, 113, 0.15);
+  }
+  .post-feature img {
+    width: 100%;
+    max-height: 580px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+  }
+  .post-feature-inner:hover img {
+    transform: scale(1.01);
+  }
+  .post-feature-inner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 0.75rem;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+    pointer-events: none;
+  }
+  /* Placeholder when no feature image */
+  .post-feature-placeholder {
+    width: 100%;
+    height: 320px;
+    background: linear-gradient(135deg, var(--coas-surface-container-low), var(--coas-surface-container-high));
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .post-feature-placeholder .material-symbols-outlined {
+    font-size: 5rem;
+    color: var(--coas-secondary);
+    opacity: 0.2;
+  }
+
+  /* ── Article Body (styles for Hugo-rendered markdown) ── */
+  .post-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+    color: rgba(34, 27, 13, 0.9);
+    font-weight: 300;
+  }
+
+  /* Drop cap on first paragraph */
+  .post-body > p:first-of-type::first-letter {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: var(--coas-primary);
+    float: left;
+    margin-right: 0.75rem;
+    margin-top: 0.25rem;
+    line-height: 0.85;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .post-body p {
+    margin: 0 0 1.5rem;
+  }
+
+  .post-body h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--coas-primary);
+    margin: 3rem 0 1rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  .post-body h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--coas-tertiary);
+    margin: 2.5rem 0 0.75rem;
+    line-height: 1.3;
+  }
+
+  .post-body a {
+    color: var(--coas-primary);
+    text-decoration: underline;
+    text-decoration-color: var(--coas-border-decorative);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s;
+  }
+  .post-body a:hover {
+    text-decoration-color: var(--coas-primary);
+  }
+
+  .post-body strong { font-weight: 600; color: var(--coas-on-surface); }
+  .post-body em { font-style: italic; }
+
+  .post-body blockquote {
+    margin: 2rem 0;
+    padding: 1.25rem 2rem;
+    border-left: 4px solid var(--coas-primary);
+    background: var(--coas-surface-container-low);
+    border-radius: 0 0.75rem 0.75rem 0;
+    font-style: italic;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--coas-primary-container);
+    line-height: 1.6;
+  }
+  .post-body blockquote p { margin: 0; }
+
+  .post-body img {
+    width: 100%;
+    border-radius: 0.75rem;
+    margin: 2rem 0 0.5rem;
+    box-shadow: 0 8px 24px rgba(34, 27, 13, 0.08);
+  }
+
+  /* Hugo renders figure elements for images with captions */
+  .post-body figure {
+    margin: 2.5rem 0;
+  }
+  .post-body figure img {
+    margin-bottom: 0;
+  }
+  .post-body figcaption {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--coas-on-surface-variant);
+    font-style: italic;
+    margin-top: 0.75rem;
+  }
+
+  .post-body ul, .post-body ol {
+    margin: 1rem 0 1.5rem 1.5rem;
+  }
+  .post-body li {
+    margin-bottom: 0.5rem;
+  }
+
+  .post-body hr {
+    border: none;
+    height: 1px;
+    background: var(--coas-outline-variant);
+    opacity: 0.3;
+    margin: 3rem 0;
+  }
+
+  .post-body code {
+    font-size: 0.9em;
+    background: var(--coas-surface-container-low);
+    padding: 0.15em 0.4em;
+    border-radius: 0.35rem;
+  }
+  .post-body pre {
+    background: var(--coas-on-surface);
+    color: var(--coas-surface);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  .post-body pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+  }
+
+  /* ── Author Bio Box ── */
+  .post-author-box {
+    max-width: 720px;
+    margin: 4rem auto 0;
+    padding: 0 1.5rem;
+  }
+  .post-author-box-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 2.5rem;
+    background: rgba(221, 188, 253, 0.2);
+    border-radius: 0.75rem;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .post-author-box-inner {
+      flex-direction: row;
+      text-align: left;
+      gap: 2rem;
+    }
+  }
+  .post-author-avatar {
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    outline: 4px solid rgba(107, 76, 138, 0.15);
+    flex-shrink: 0;
+  }
+  .post-author-avatar-placeholder {
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 50%;
+    background: var(--coas-surface-container-high);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    outline: 4px solid rgba(107, 76, 138, 0.15);
+  }
+  .post-author-avatar-placeholder .material-symbols-outlined {
+    font-size: 2.5rem;
+    color: var(--coas-secondary);
+    opacity: 0.5;
+  }
+  .post-author-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--coas-primary);
+    margin: 0 0 0.35rem;
+  }
+  .post-author-bio {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.9rem;
+    color: var(--coas-on-surface-variant);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Related Posts ── */
+  .post-related {
+    max-width: 1100px;
+    margin: 5rem auto 0;
+    padding: 0 1.5rem;
+  }
+  .post-related h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--coas-primary);
+    margin: 0 0 2rem;
+  }
+  .post-related-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .post-related-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .post-related-card {
+    display: block;
+    background: var(--coas-surface-container-low);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .post-related-card:hover {
+    background: var(--coas-surface-container-high);
+    transform: translateY(-2px);
+  }
+  .post-related-card-img {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+  }
+  .post-related-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .post-related-card:hover .post-related-card-img img {
+    transform: scale(1.05);
+  }
+  .post-related-card-img-placeholder {
+    aspect-ratio: 16/9;
+    background: var(--coas-surface-container-high);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .post-related-card-img-placeholder .material-symbols-outlined {
+    font-size: 2.5rem;
+    color: var(--coas-secondary);
+    opacity: 0.25;
+  }
+  .post-related-card-body {
+    padding: 1.5rem;
+  }
+  .post-related-card-tag {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--coas-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .post-related-card-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--coas-primary);
+    line-height: 1.3;
+    margin: 0 0 0.5rem;
+  }
+  .post-related-card-summary {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.85rem;
+    color: var(--coas-on-surface-variant);
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* ── Back to Blog Link ── */
+  .post-back-link {
+    max-width: 720px;
+    margin: 3rem auto 0;
+    padding: 0 1.5rem;
+  }
+  .post-back-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--coas-primary);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .post-back-link a:hover { opacity: 0.65; }
+  .post-back-link a .material-symbols-outlined { font-size: 1.1rem; }
+</style>
+
+<div class="post-film-grain"></div>
+
+{{/* ── Meses en español ── */}}
+{{ $monthsLong := slice "Enero" "Febrero" "Marzo" "Abril" "Mayo" "Junio" "Julio" "Agosto" "Septiembre" "Octubre" "Noviembre" "Diciembre" }}
+{{ $mIdx := sub .Date.Month 1 }}
+{{ $monthName := index $monthsLong (int $mIdx) }}
+
+{{/* ── POST HEADER ── */}}
+<header class="post-header">
+
+  {{/* Primer tag como badge */}}
+  {{ with .Params.tags }}
+    {{ $firstTag := index . 0 }}
+    <a href="{{ "tags/" | absURL }}{{ $firstTag | urlize }}/" class="post-tag-badge">{{ $firstTag }}</a>
+  {{ end }}
+
+  <h1>{{ .Title }}</h1>
+
+  <div class="post-meta">
+    {{ with .Params.autores }}
+      <span>Por {{ delimit . ", " }}</span>
+      <span class="post-meta-dot"></span>
+    {{ end }}
+    <span>{{ .Date.Day }} de {{ $monthName }}, {{ .Date.Year }}</span>
+    <span class="post-meta-dot"></span>
+    <span>{{ .ReadingTime }} min de lectura</span>
+  </div>
+</header>
+
+{{/* ── FEATURE IMAGE ── */}}
+<div class="post-feature">
+  {{ $img := .Resources.GetMatch "feature*" }}
+  {{ if $img }}
+    <div class="post-feature-inner">
+      {{ $resized := $img.Fill "1200x580" }}
+      <img src="{{ $resized.RelPermalink }}"
+           alt="{{ .Title }}"
+           width="1200" height="580"
+           loading="eager">
+    </div>
+  {{ else if .Params.image }}
+    <div class="post-feature-inner">
+      <img src="{{ .Params.image }}"
+           alt="{{ .Title }}"
+           loading="eager">
+    </div>
+  {{ else }}
+    <div class="post-feature-placeholder">
+      <span class="material-symbols-outlined">movie_filter</span>
+    </div>
+  {{ end }}
+</div>
+
+{{/* ── ARTICLE BODY ── */}}
+<article class="post-body">
+  {{ .Content }}
+</article>
+
+{{/* ── AUTHOR BIO BOX ── */}}
+{{ with .Params.autores }}
+  <div class="post-author-box">
+    <div class="post-author-box-inner">
+
+      {{/* Avatar: busca assets/img/autores/nombre-urlizado.jpg */}}
+      {{ $authorName := index . 0 }}
+      {{ $avatarPath := printf "img/autores/%s.jpg" ($authorName | urlize) }}
+      {{ $avatar := resources.Get $avatarPath }}
+      {{ if $avatar }}
+        <img class="post-author-avatar" src="{{ $avatar.RelPermalink }}" alt="{{ $authorName }}">
+      {{ else }}
+        <div class="post-author-avatar-placeholder">
+          <span class="material-symbols-outlined">person</span>
+        </div>
+      {{ end }}
+
+      <div>
+        <h3 class="post-author-name">{{ $authorName }}</h3>
+        {{ with $.Params.author_bio }}
+          <p class="post-author-bio">{{ . }}</p>
+        {{ else }}
+          <p class="post-author-bio">Miembro del equipo de CineClub COAS.</p>
+        {{ end }}
+      </div>
+
+    </div>
+  </div>
+{{ end }}
+
+{{/* ── RELATED POSTS: "Continúa Explorando" ── */}}
+{{ $related := .Site.RegularPages.Related . | first 3 }}
+{{ if $related }}
+  <section class="post-related">
+    <h2>Continúa explorando</h2>
+    <div class="post-related-grid">
+      {{ range $related }}
+        <a href="{{ .RelPermalink }}" class="post-related-card">
+
+          {{/* Imagen */}}
+          {{ $rImg := .Resources.GetMatch "feature*" }}
+          {{ if $rImg }}
+            <div class="post-related-card-img">
+              {{ $rThumb := $rImg.Fill "600x340" }}
+              <img src="{{ $rThumb.RelPermalink }}" alt="{{ .Title }}" loading="lazy">
+            </div>
+          {{ else }}
+            <div class="post-related-card-img-placeholder">
+              <span class="material-symbols-outlined">movie_filter</span>
+            </div>
+          {{ end }}
+
+          <div class="post-related-card-body">
+            {{ with .Params.tags }}
+              <span class="post-related-card-tag">{{ index . 0 }}</span>
+            {{ end }}
+            <h3 class="post-related-card-title">{{ .Title }}</h3>
+            {{ if .Params.summary }}
+              <p class="post-related-card-summary">{{ .Params.summary }}</p>
+            {{ else if .Summary }}
+              <p class="post-related-card-summary">{{ .Summary | plainify | truncate 120 }}</p>
+            {{ end }}
+          </div>
+
+        </a>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}
+
+{{/* ── BACK TO BLOG ── */}}
+<div class="post-back-link">
+  <a href="{{ "blog/" | absURL }}">
+    <span class="material-symbols-outlined">arrow_back_ios</span>
+    Volver a la Bitácora
+  </a>
+</div>
+
+{{ end }}

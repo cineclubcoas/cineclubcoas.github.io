@@ -1,0 +1,397 @@
+{{ define "main" }}
+
+<style>
+  /* ── Proyectos Page Tokens ── */
+  .proyectos-hero {
+    padding: 8rem 1.5rem 2rem;
+    text-align: center;
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+  .proyectos-hero-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    background: #f5e6d0;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .proyectos-hero-icon .material-symbols-outlined {
+    font-size: 2rem;
+    color: #523471;
+  }
+  .proyectos-hero h1 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 3.75rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #523471;
+    margin: 0 0 1rem;
+  }
+  .proyectos-hero p {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 1.15rem;
+    color: #5f3738;
+    font-weight: 500;
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+
+  /* ── Filter Pills ── */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0 1.5rem 3rem;
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+  .filter-pill {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .filter-pill[data-filter="todos"] {
+    background: #523471;
+    color: #fff8f2;
+  }
+  .filter-pill[data-filter="cultural"] {
+    background: #ddbcfd;
+    color: #634881;
+    border-color: transparent;
+  }
+  .filter-pill[data-filter="social"] {
+    background: #f1b8b8;
+    color: #643c3c;
+    border-color: transparent;
+  }
+  .filter-pill[data-filter="deportivo"] {
+    background: transparent;
+    color: #523471;
+    border-color: #523471;
+  }
+  .filter-pill:hover { opacity: 0.85; }
+  .filter-pill.active {
+    background: #523471 !important;
+    color: #fff8f2 !important;
+    border-color: #523471 !important;
+  }
+
+  /* ── Project Grid ── */
+  .proyectos-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .proyectos-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ── Project Card ── */
+  .proyecto-card {
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 50px -15px rgba(34,27,13,0.05);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .proyecto-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 60px -15px rgba(34,27,13,0.09);
+  }
+  .proyecto-card.hidden-by-filter {
+    display: none;
+  }
+  .proyecto-card-img-wrap {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  .proyecto-card-img-wrap img {
+    width: 100%;
+    height: 16rem;
+    object-fit: cover;
+    border-radius: 1rem;
+    background: #f5e6d0;
+  }
+  .proyecto-card-img-wrap .tag-badge {
+    position: absolute;
+    bottom: -0.75rem;
+    left: 1rem;
+    padding: 0.25rem 1.25rem;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 9999px;
+    box-shadow: 0 4px 12px rgba(34,27,13,0.1);
+  }
+  .tag-badge.tag-cultural {
+    background: #ddbcfd;
+    color: #634881;
+  }
+  .tag-badge.tag-social {
+    background: #f1b8b8;
+    color: #643c3c;
+  }
+  .tag-badge.tag-deportivo {
+    background: #f5e6d0;
+    color: #523471;
+    border: 2px solid #523471;
+  }
+  .proyecto-card h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #523471;
+    margin: 0 0 0.75rem;
+  }
+  .proyecto-card .card-desc {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.95rem;
+    color: #4b454f;
+    line-height: 1.6;
+    margin: 0 0 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .proyecto-card .card-link {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .proyecto-card .card-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.5rem;
+    background: #ddbcfd;
+    color: #634881;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 700;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .proyecto-card .card-link a:hover {
+    background: #523471;
+    color: #fff8f2;
+  }
+
+  /* ── Empty State ── */
+  .proyectos-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 1rem;
+    display: none;
+  }
+  .proyectos-empty.visible { display: block; }
+  .proyectos-empty p {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: #4b454f;
+    font-size: 1.1rem;
+  }
+
+  /* ── CTA Banner ── */
+  .proyectos-cta {
+    max-width: 72rem;
+    margin: 5rem auto 0;
+    padding: 0 1.5rem;
+  }
+  .proyectos-cta-inner {
+    background: #fbecd6;
+    border-radius: 1.5rem;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) {
+    .proyectos-cta-inner {
+      flex-direction: row;
+      padding: 3rem 4rem;
+    }
+  }
+  .proyectos-cta-inner::before {
+    content: '';
+    position: absolute;
+    top: -5rem;
+    right: -5rem;
+    width: 16rem;
+    height: 16rem;
+    background: rgba(82,52,113,0.05);
+    border-radius: 50%;
+  }
+  .proyectos-cta-inner img {
+    width: 8rem;
+    height: 8rem;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+  }
+  @media (min-width: 768px) {
+    .proyectos-cta-inner img { width: 10rem; height: 10rem; }
+  }
+  .proyectos-cta-text {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  @media (min-width: 768px) {
+    .proyectos-cta-text { text-align: left; }
+  }
+  .proyectos-cta-text h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 800;
+    color: #523471;
+    margin: 0 0 1rem;
+  }
+  .proyectos-cta-text p {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 1.05rem;
+    color: #4b454f;
+    font-weight: 500;
+    margin: 0 0 2rem;
+  }
+  .proyectos-cta-text a {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: #523471;
+    color: #fff8f2;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    box-shadow: 0 10px 40px -10px rgba(82,52,113,0.3);
+    transition: background 0.3s ease;
+  }
+  .proyectos-cta-text a:hover {
+    background: #6B4C8A;
+  }
+</style>
+
+<!-- Hero -->
+<div class="proyectos-hero">
+  <div class="proyectos-hero-icon">
+    <span class="material-symbols-outlined">folder_special</span>
+  </div>
+  <h1>Nuestros Proyectos</h1>
+  <p>Iniciativas en el ámbito Cultural, Social y Deportivo.</p>
+</div>
+
+<!-- Filter Pills -->
+<div class="filter-bar" id="filterBar">
+  <button class="filter-pill active" data-filter="todos">Todos</button>
+  <button class="filter-pill" data-filter="cultural">Cultural</button>
+  <button class="filter-pill" data-filter="social">Social</button>
+  <button class="filter-pill" data-filter="deportivo">Deportivo</button>
+</div>
+
+<!-- Project Grid -->
+<div class="proyectos-grid" id="proyectosGrid">
+  {{ range .Pages }}
+  {{ $tags := .Params.tags | default (slice) }}
+  {{ $primaryTag := index $tags 0 | default "cultural" }}
+  <article class="proyecto-card" data-tags="{{ delimit $tags "," }}">
+    <div class="proyecto-card-img-wrap">
+      {{ $img := .Resources.GetMatch "feature*" }}
+      {{ if $img }}
+        {{ $resized := $img.Fill "720x400" }}
+        <img src="{{ $resized.RelPermalink }}" alt="{{ .Title }}" loading="lazy">
+      {{ else if .Params.image }}
+        <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+      {{ else }}
+        {{/* Fallback: colored placeholder */}}
+        <div style="width:100%;height:16rem;border-radius:1rem;background:linear-gradient(135deg,#f0dbff 0%,#ddbcfd 100%);display:flex;align-items:center;justify-content:center;">
+          <span class="material-symbols-outlined" style="font-size:3rem;color:#523471;opacity:0.4;">movie</span>
+        </div>
+      {{ end }}
+      <span class="tag-badge tag-{{ $primaryTag }}">{{ $primaryTag }}</span>
+    </div>
+    <h3>{{ .Title }}</h3>
+    <p class="card-desc">{{ .Description | default .Summary | plainify | truncate 160 }}</p>
+    <div class="card-link">
+      <a href="{{ .RelPermalink }}">
+        Ver Proyecto
+        <span class="material-symbols-outlined" style="font-size:1rem;">arrow_forward</span>
+      </a>
+    </div>
+  </article>
+  {{ end }}
+
+  <div class="proyectos-empty" id="emptyState">
+    <p>No hay proyectos en esta categoría todavía.</p>
+  </div>
+</div>
+
+<!-- CTA Banner -->
+<div class="proyectos-cta">
+  <div class="proyectos-cta-inner">
+    {{ $mascota := resources.Get "img/pinguino_social.webp" }}
+    {{ if $mascota }}
+      <img src="{{ $mascota.RelPermalink }}" alt="Pingüino COAS">
+    {{ else }}
+      <img src="{{ "img/pinguino_social.webp" | relURL }}" alt="Pingüino COAS">
+    {{ end }}
+    <div class="proyectos-cta-text">
+      <h2>¿Quieres sumarte a un proyecto?</h2>
+      <p>Únete a nuestra red de voluntarios y sé parte del cambio cultural y social.</p>
+      <a href="{{ "contacto/" | relURL }}">Escríbenos</a>
+    </div>
+  </div>
+</div>
+
+<!-- Filter JS -->
+<script>
+(function() {
+  const pills = document.querySelectorAll('#filterBar .filter-pill');
+  const cards = document.querySelectorAll('#proyectosGrid .proyecto-card');
+  const empty = document.getElementById('emptyState');
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+
+      const filter = pill.dataset.filter;
+      let visible = 0;
+
+      cards.forEach(card => {
+        const tags = card.dataset.tags.split(',');
+        if (filter === 'todos' || tags.includes(filter)) {
+          card.classList.remove('hidden-by-filter');
+          visible++;
+        } else {
+          card.classList.add('hidden-by-filter');
+        }
+      });
+
+      empty.classList.toggle('visible', visible === 0);
+    });
+  });
+})();
+</script>
+
+{{ end }}

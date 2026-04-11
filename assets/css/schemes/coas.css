@@ -1,0 +1,42 @@
+/* ========================================
+   CineClub COAS — Color Scheme v2
+   Basado en el diseño Stitch + paleta del pingüino
+   ======================================== */
+
+:root {
+    /* Neutral — fondos y texto */
+    --color-neutral-50: 255, 248, 242;    /* #FFF8F2 - Fondo principal (surface) */
+    --color-neutral-100: 255, 242, 224;   /* #FFF2E0 - Fondo secundario sutil */
+    --color-neutral-200: 251, 236, 214;   /* #FBECD6 - Contenedores */
+    --color-neutral-300: 245, 230, 208;   /* #F5E6D0 - Contenedores altos */
+    --color-neutral-400: 239, 225, 203;   /* #EFE1CB - Contenedores destacados */
+    --color-neutral-500: 124, 116, 127;   /* #7C747F - Texto secundario */
+    --color-neutral-600: 75, 69, 79;      /* #4B454F - Texto intermedio */
+    --color-neutral-700: 34, 27, 13;      /* #221B0D - Texto principal (tinta cálida) */
+    --color-neutral-800: 56, 47, 33;      /* #382F21 - Superficies inversas */
+    --color-neutral-900: 30, 18, 44;      /* #1E122C - Más oscuro */
+
+    /* Primary — morado institucional */
+    --color-primary-50: 240, 219, 255;    /* #F0DBFF - Primary muy claro */
+    --color-primary-100: 220, 184, 254;   /* #DCB8FE - Primary claro */
+    --color-primary-200: 200, 168, 232;   /* #C8A8E8 - Lavanda */
+    --color-primary-300: 155, 123, 184;   /* #9B7BB8 - Morado medio */
+    --color-primary-400: 107, 76, 138;    /* #6B4C8A - Primary container */
+    --color-primary-500: 82, 52, 113;     /* #523471 - Primary principal */
+    --color-primary-600: 87, 57, 117;     /* #573975 - Primary oscuro */
+    --color-primary-700: 45, 27, 66;      /* #2D1B42 - Footer/oscuro */
+    --color-primary-800: 40, 12, 68;      /* #280C44 - Muy oscuro */
+    --color-primary-900: 30, 18, 44;      /* #1E122C - Casi negro */
+
+    /* Secondary — lavanda/rosa para acentos */
+    --color-secondary-50: 255, 218, 217;  /* #FFDAD9 - Terciario claro */
+    --color-secondary-100: 241, 184, 184; /* #F1B8B8 - Rosa cálido (highlights) */
+    --color-secondary-200: 232, 176, 176; /* #E8B0B0 - Rosa mejilla */
+    --color-secondary-300: 221, 188, 253; /* #DDBCFD - Secondary container */
+    --color-secondary-400: 110, 82, 140;  /* #6E528C - Secondary */
+    --color-secondary-500: 95, 55, 56;    /* #5F3738 - Terciario/tinta cálida */
+    --color-secondary-600: 100, 60, 60;   /* #643C3C - Terciario oscuro */
+    --color-secondary-700: 122, 78, 79;   /* #7A4E4F - Terciario container */
+    --color-secondary-800: 49, 18, 19;    /* #311213 - Terciario muy oscuro */
+    --color-secondary-900: 45, 27, 66;    /* #2D1B42 - Base oscura */
+}
