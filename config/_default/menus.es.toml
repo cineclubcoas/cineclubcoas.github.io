@@ -1,10 +1,10 @@
 [[main]]
-  name = "Quiénes Somos"
+  name = "Nosotros"
   pageRef = "quienes-somos"
   weight = 10
 
 [[main]]
-  name = "Blog"
+  name = "Crónicas"
   pageRef = "blog"
   weight = 20
 
@@ -29,14 +29,12 @@
   weight = 60
 
 [[main]]
-  name = "Contacto"
+  name = "Conversemos"
   pageRef = "contacto"
   weight = 70
 
-# Menú del footer (pie de página)
-
 [[footer]]
-  name = "Contacto"
+  name = "Conversemos"
   pageRef = "contacto"
   weight = 10
 

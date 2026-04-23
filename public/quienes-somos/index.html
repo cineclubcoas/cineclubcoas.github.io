@@ -287,12 +287,12 @@
       href="/quienes-somos/"
       
       class="flex items-center bf-icon-color-hover"
-      aria-label="Quiénes Somos"
+      aria-label="Nosotros"
       title="Quiénes Somos">
       
       
         <span class="text-base font-medium break-normal">
-          Quiénes Somos
+          Nosotros
         </span>
       
     </a>
@@ -305,12 +305,12 @@
       href="/blog/"
       
       class="flex items-center bf-icon-color-hover"
-      aria-label="Blog"
+      aria-label="Crónicas"
       title="">
       
       
         <span class="text-base font-medium break-normal">
-          Blog
+          Crónicas
         </span>
       
     </a>
@@ -395,12 +395,12 @@
       href="/contacto/"
       
       class="flex items-center bf-icon-color-hover"
-      aria-label="Contacto"
+      aria-label="Conversemos"
       title="Contacto">
       
       
         <span class="text-base font-medium break-normal">
-          Contacto
+          Conversemos
         </span>
       
     </a>
@@ -471,12 +471,12 @@
     <div class="px-2">
       <a
         href="/quienes-somos/"
-        aria-label="Quiénes Somos"
+        aria-label="Nosotros"
         
         class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
         
         <span title="Quiénes Somos" class="text-2xl font-bold tracking-tight">
-          Quiénes Somos
+          Nosotros
         </span>
         
       </a>
@@ -488,12 +488,12 @@
     <div class="px-2">
       <a
         href="/blog/"
-        aria-label="Blog"
+        aria-label="Crónicas"
         
         class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
         
         <span title="" class="text-2xl font-bold tracking-tight">
-          Blog
+          Crónicas
         </span>
         
       </a>
@@ -573,12 +573,12 @@
     <div class="px-2">
       <a
         href="/contacto/"
-        aria-label="Contacto"
+        aria-label="Conversemos"
         
         class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
         
         <span title="Contacto" class="text-2xl font-bold tracking-tight">
-          Contacto
+          Conversemos
         </span>
         
       </a>
@@ -630,9 +630,7 @@
     border-radius: 2rem;
     margin-bottom: 4rem;
     overflow: hidden;
-     
     background: linear-gradient(135deg, #6B4C8A 0%, #523471 60%, #3a2050 100%);
-     
   }
   .about-hero::before {
     content: '';
@@ -853,82 +851,176 @@
   }
 
    
-  .team-grid {
+  .directorio-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    max-width: 900px;
-    margin: 0 auto;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
   }
   @media (min-width: 768px) {
-    .team-grid { grid-template-columns: 1fr 1fr; }
+    .directorio-grid { grid-template-columns: repeat(4, 1fr); }
   }
-  .team-card {
+  .directorio-card {
     background: #fff2e0;
-    padding: 2rem;
-    border-radius: 2rem;
+    padding: 1.75rem 1.25rem;
+    border-radius: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.25rem;
+    gap: 0.75rem;
     text-align: center;
+    border: 2px dashed rgba(82, 52, 113, 0.15);
     transition: background 0.3s ease;
   }
-  @media (min-width: 640px) {
-    .team-card {
-      flex-direction: row;
-      text-align: left;
-      align-items: center;
-    }
+  .directorio-card--filled {
+    border-style: solid;
+    border-color: #C8A8E8;
   }
-  .team-card:hover {
+  .directorio-card:hover {
     background: #f5e6d0;
   }
-  .team-card__avatar {
-    width: 120px;
-    height: 120px;
+  .directorio-card__avatar {
+    width: 72px;
+    height: 72px;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
-    border: 4px solid rgba(82, 52, 113, 0.1);
     background: linear-gradient(135deg, #ddbcfd, #f1b8b8);
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .team-card__avatar img {
+  .directorio-card__avatar img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  .team-card__avatar-placeholder {
+  .directorio-card__initials {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 800;
-    font-size: 2rem;
+    font-size: 1.25rem;
     color: #523471;
   }
-  .team-card__name {
+  .directorio-card__role {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #523471;
+  }
+  .directorio-card__name {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 700;
-    font-size: 1.35rem;
+    font-size: 1rem;
     color: #221b0d;
+    min-height: 1.25rem;
   }
-  .team-card__role {
+  .directorio-card__pending {
     font-family: 'Be Vietnam Pro', sans-serif;
-    font-weight: 700;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #523471;
-    margin-top: 0.15rem;
-  }
-  .team-card__bio {
-    font-family: 'Be Vietnam Pro', sans-serif;
-    font-size: 0.9rem;
-    color: #4b454f;
-    line-height: 1.6;
-    margin-top: 0.35rem;
+    font-size: 0.8rem;
+    color: rgba(75, 69, 79, 0.5);
     font-style: italic;
+  }
+
+   
+  .miembros-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #523471;
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  .miembros-scroll-wrapper {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .miembros-scroll {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.5rem 0.25rem 1rem 0.25rem;
+    scrollbar-width: thin;
+    scrollbar-color: #ddbcfd transparent;
+  }
+  .miembros-scroll::-webkit-scrollbar {
+    height: 6px;
+  }
+  .miembros-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .miembros-scroll::-webkit-scrollbar-thumb {
+    background: #ddbcfd;
+    border-radius: 3px;
+  }
+  .miembro-chip {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.25rem;
+    background: #fff2e0;
+    border-radius: 1.25rem;
+    border: 2px dashed rgba(82, 52, 113, 0.12);
+    min-width: 110px;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  .miembro-chip--filled {
+    border-style: solid;
+    border-color: #C8A8E8;
+  }
+  .miembro-chip:hover {
+    background: #f5e6d0;
+  }
+  .miembro-chip__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ddbcfd, #f1b8b8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .miembro-chip__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .miembro-chip__initials {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    color: #523471;
+  }
+  .miembro-chip__name {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #221b0d;
+    text-align: center;
+    max-width: 100px;
+    line-height: 1.3;
+  }
+  .miembro-chip__pending {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.7rem;
+    color: rgba(75, 69, 79, 0.4);
+    font-style: italic;
+  }
+  .miembros-hint {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.75rem;
+    color: rgba(75, 69, 79, 0.4);
+    text-align: center;
+    margin-top: 0.5rem;
   }
 
    
@@ -1008,8 +1100,8 @@
         Quiénes <span>Somos</span>
       </h1>
       <p class="about-hero__subtitle">
-        Democratizando el cine y construyendo comunidad a través de la cultura
-        y el deporte en el corazón de <em>Santiago, Chile.</em>
+        Cultura, comunidad y deporte en el territorio. Construyendo desarrollo humano integral desde
+        <em>Santiago y Valparaíso.</em>
       </p>
     </div>
   </section>
@@ -1024,10 +1116,10 @@
         </div>
         <h2 class="mv-card__title">Misión</h2>
         <p class="mv-card__text">
-          Promover el acceso al cine como experiencia cultural colectiva,
-          mediante la realización de exhibiciones y actividades de mediación
-          en distintos territorios, fomentando la apreciación cinematográfica
-          y el encuentro comunitario.
+          Promover el desarrollo humano integral y el encuentro comunitario
+          a través de la cultura, la intervención social y el deporte,
+          utilizando el cine y las artes como herramientas de mediación,
+          reflexión y activación territorial en barrios de Santiago y Valparaíso.
         </p>
       </div>
 
@@ -1037,10 +1129,11 @@
         </div>
         <h2 class="mv-card__title">Visión</h2>
         <p class="mv-card__text">
-          Consolidarnos como un proyecto de exhibición que articule redes
-          culturales y territoriales, contribuyendo a descentralizar el
-          acceso al cine y posicionándolo como una herramienta relevante
-          para la vida cultural y social de las comunidades.
+          Consolidarnos como una asociación cultural y deportiva que articule
+          redes territoriales y comunitarias, contribuyendo a democratizar
+          el acceso a experiencias culturales y deportivas de calidad,
+          y posicionando el cine y la mediación cultural como herramientas
+          relevantes para la vida social de las comunidades.
         </p>
       </div>
 
@@ -1056,56 +1149,43 @@
       
       <div class="timeline-item timeline-item--left">
         <div class="timeline-item__dot"></div>
-        <div class="timeline-item__year">2024</div>
+        <div class="timeline-item__year">2025</div>
         <div class="timeline-item__heading">
-          
-          Título del hito 2024
+          Nace CineClub COAS
         </div>
         <p class="timeline-item__text">
-          
-          Descripción breve de lo que ocurrió en 2024.
+          Pablo Zúñiga Saa crea el CineClub COAS y comienza a realizar
+          proyecciones itinerantes en barrios, sedes comunitarias y espacios
+          culturales. Primeras experiencias de curaduría cinematográfica
+          y mediación cultural a nivel comunitario y barrial.
         </p>
       </div>
 
       
       <div class="timeline-item timeline-item--right">
         <div class="timeline-item__dot"></div>
-        <div class="timeline-item__year">2025</div>
-        <div class="timeline-item__heading">
-          
-          Título del hito 2025
-        </div>
-        <p class="timeline-item__text">
-          
-          Descripción breve de lo que ocurrió en 2025.
-        </p>
-      </div>
-
-      
-      <div class="timeline-item timeline-item--left">
-        <div class="timeline-item__dot"></div>
         <div class="timeline-item__year">2026</div>
         <div class="timeline-item__heading">
-          
-          Título del hito 2026
+          Formalización y crecimiento
         </div>
         <p class="timeline-item__text">
-          
-          Descripción breve de lo que está pasando en 2026.
+          Constitución como Asociación Cultural y Deportiva bajo la Ley 20.500.
+          Vinculación con organizaciones territoriales, creación de proyectos
+          y desarrollo del marco operativo, metodológico e institucional de COAS.
         </p>
       </div>
 
       
-      <div class="timeline-item timeline-item--right timeline-item--projection">
+      <div class="timeline-item timeline-item--left timeline-item--projection">
         <div class="timeline-item__dot"></div>
         <div class="timeline-item__year">2027</div>
         <div class="timeline-item__heading">
-          
-          Proyección 2027
+          Consolidación y financiamiento
         </div>
         <p class="timeline-item__text">
-          
-          Lo que aspiramos lograr en 2027.
+          Consolidar la asociación con trayectoria documentada, postular
+          a fondos concursables y fortalecer las redes territoriales
+          para ampliar el alcance de los tres pilares de COAS.
         </p>
         <span class="timeline-item__badge">Proyección</span>
       </div>
@@ -1117,41 +1197,119 @@
   <section class="about-section">
     <h2 class="about-section__title">Nuestro Equipo</h2>
 
-    <div class="team-grid">
+    
+    <div class="directorio-grid">
 
-      
-      <div class="team-card">
-        <div class="team-card__avatar">
-          
-          <span class="team-card__avatar-placeholder">PZ</span>
+      <div class="directorio-card">
+        <div class="directorio-card__avatar">
+          <span class="directorio-card__initials">—</span>
         </div>
-        <div>
-          <div class="team-card__name">Pablo Zúñiga Saa</div>
-          <div class="team-card__role">Fundador y Curador</div>
-          <p class="team-card__bio">
-            Antropólogo · Universidad de Chile
-          </p>
+        <div class="directorio-card__role">Presidente/a</div>
+        <div class="directorio-card__name">
+          <span class="directorio-card__pending">Por definir</span>
         </div>
       </div>
 
-      
-      <div class="team-card">
-        <div class="team-card__avatar">
-          
-          <span class="team-card__avatar-placeholder">LZ</span>
+      <div class="directorio-card">
+        <div class="directorio-card__avatar">
+          <span class="directorio-card__initials">—</span>
         </div>
-        <div>
-          <div class="team-card__name">Lucas Zepeda</div>
-          <div class="team-card__role">Co-fundador</div>
-          <p class="team-card__bio">
-            Trabajador Social · PUCV
-          </p>
+        <div class="directorio-card__role">Vicepresidente/a</div>
+        <div class="directorio-card__name">
+          <span class="directorio-card__pending">Por definir</span>
         </div>
       </div>
 
-      
+      <div class="directorio-card">
+        <div class="directorio-card__avatar">
+          <span class="directorio-card__initials">—</span>
+        </div>
+        <div class="directorio-card__role">Secretario/a</div>
+        <div class="directorio-card__name">
+          <span class="directorio-card__pending">Por definir</span>
+        </div>
+      </div>
+
+      <div class="directorio-card">
+        <div class="directorio-card__avatar">
+          <span class="directorio-card__initials">—</span>
+        </div>
+        <div class="directorio-card__role">Tesorero/a</div>
+        <div class="directorio-card__name">
+          <span class="directorio-card__pending">Por definir</span>
+        </div>
+      </div>
 
     </div>
+
+    
+    <div class="miembros-label">Miembros</div>
+
+    <div class="miembros-scroll-wrapper">
+      <div class="miembros-scroll">
+
+        
+
+        <div class="miembro-chip">
+          <div class="miembro-chip__avatar">
+            <span class="miembro-chip__initials">—</span>
+          </div>
+          <span class="miembro-chip__pending">Vacante</span>
+        </div>
+
+        <div class="miembro-chip">
+          <div class="miembro-chip__avatar">
+            <span class="miembro-chip__initials">—</span>
+          </div>
+          <span class="miembro-chip__pending">Vacante</span>
+        </div>
+
+        <div class="miembro-chip">
+          <div class="miembro-chip__avatar">
+            <span class="miembro-chip__initials">—</span>
+          </div>
+          <span class="miembro-chip__pending">Vacante</span>
+        </div>
+
+        <div class="miembro-chip">
+          <div class="miembro-chip__avatar">
+            <span class="miembro-chip__initials">—</span>
+          </div>
+          <span class="miembro-chip__pending">Vacante</span>
+        </div>
+
+        <div class="miembro-chip">
+          <div class="miembro-chip__avatar">
+            <span class="miembro-chip__initials">—</span>
+          </div>
+          <span class="miembro-chip__pending">Vacante</span>
+        </div>
+
+        <div class="miembro-chip">
+          <div class="miembro-chip__avatar">
+            <span class="miembro-chip__initials">—</span>
+          </div>
+          <span class="miembro-chip__pending">Vacante</span>
+        </div>
+
+        <div class="miembro-chip">
+          <div class="miembro-chip__avatar">
+            <span class="miembro-chip__initials">—</span>
+          </div>
+          <span class="miembro-chip__pending">Vacante</span>
+        </div>
+
+        <div class="miembro-chip">
+          <div class="miembro-chip__avatar">
+            <span class="miembro-chip__initials">—</span>
+          </div>
+          <span class="miembro-chip__pending">Vacante</span>
+        </div>
+
+      </div>
+      <p class="miembros-hint">← Desliza para ver más →</p>
+    </div>
+
   </section>
 
   
@@ -1168,7 +1326,6 @@
           <span class="ally-item__label">Asociación de Cineclubes de Chile</span>
         </div>
 
-        
         <div class="ally-item ally-item--placeholder">
           <div class="ally-item__icon">
             <span class="material-symbols-outlined">add</span>
@@ -1233,8 +1390,8 @@
         </span>
       </div>
       <p style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 0.875rem; color: rgba(255,248,242,0.6); max-width: 300px; line-height: 1.6;">
-        CineClub Cultural y Deportivo Chicken On A Stick.<br>
-        Promoviendo la cultura y el deporte comunitario desde 2026.
+        Asociación Cultural y Deportiva Chicken On A Stick.<br>
+        Cultura, comunidad y deporte desde Santiago y Valparaíso.
       </p>
     </div>
     <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 1.5rem;">
@@ -1243,7 +1400,7 @@
         <a href="https://www.youtube.com/@CineClubCOAS" style="color: rgba(255,248,242,0.8); text-decoration: none; font-size: 0.875rem; font-family: 'Be Vietnam Pro', sans-serif;">YouTube</a>
       </nav>
       <p style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 0.875rem; color: rgba(255,248,242,0.4);">
-        © 2026 CineClub COAS Santiago. Hecho con amor por el cine.
+        © 2026 CineClub COAS. Hecho con amor por la comunidad.
       </p>
     </div>
   </div>
