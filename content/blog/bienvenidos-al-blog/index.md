@@ -10,7 +10,7 @@ autores: ["Pablo Zúñiga"]
 showAuthor: true
 ---
 
-Mi nombre es pablo me gusta hablar de películas y blablabla. Este es el primer artículo del blog de CineClub COAS. Aquí vamos a compartir columnas de opinión sobre cine, crónicas de nuestras funciones, reseñas de películas y reflexiones sobre el rol del cine en las comunidades.
+Mi nombre es Pablo, y soy el actual programador del cineclub en las actividades de cine. Este es el primer artículo del blog de CineClub COAS!! Aquí vamos a compartir columnas de opinión sobre cine, crónicas de nuestras funciones, reseñas de películas y reflexiones sobre el rol del cine en las comunidades.
 
 ## ¿Qué van a encontrar aquí?
 
@@ -20,6 +20,6 @@ En este blog vamos a publicar contenido de distintos tipos. Columnas de opinión
 
 CineClub COAS nace de una idea simple pero poderosa: si las personas no pueden ir a la sala de cine, la sala va hacia las personas. Operamos en la comuna de Macul, Santiago de Chile, llevando proyecciones cinematográficas a juntas de vecinos, sedes comunitarias, plazas y cualquier espacio donde la comunidad se reúna.
 
-Somos parte de la Asociación de Cineclubes de Chile y estamos en proceso de formalización como organización cultural y deportiva.
+Somos parte de la Asociación de Cineclubes de Chile y estamos en proceso de formalización como personalidad jurídica para generar un espacio de trabajo con perspectiva a largo plazo.
 
 ¡Bienvenidos a este espacio!

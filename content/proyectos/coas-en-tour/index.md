@@ -4,7 +4,7 @@ description: "Proyecciones cinematográficas itinerantes — Si las personas no 
 showDate: false
 showReadingTime: false
 showWordCount: false
-tags: ["itinerancia", "cine comunitario"]
+tags: ["itinerancia", "cine comunitario", "macul", "cultural"]
 ---
 
 ## La propuesta
@@ -13,7 +13,28 @@ COAS en Tour es un proyecto de proyecciones cinematográficas itinerantes, con l
 
 ## Cómo funciona cada jornada
 
-Cada función sigue un formato de tres momentos: una presentación breve de la iniciativa y la película, la proyección en sí misma, y un conversatorio posterior sobre las temáticas abordadas.
+Cada función sigue un formato de tres momentos: una presentación breve de la iniciativa y la película, la proyección en sí misma, y una conversación posterior sobre las temáticas abordadas, según el formato y el espacio que dispongamos.
+
+## Recorrido
+
+### Primer ciclo — Macul, verano 2026
+
+Durante enero y febrero de 2026 realizamos nuestro primer ciclo de COAS en Tour en colaboración con la Junta de Vecinos Villa Santa Elena, en la comuna de Macul. Dos funciones al aire libre en la Plaza Dr. Pedro Flores que activaron el espacio público como punto de encuentro vecinal.
+
+**Función 1 · *Superman* (James Gunn, 2025)**  
+30 de enero de 2026 · Plaza Dr. Pedro Flores, Macul · Más de 30 asistentes
+
+La selección fue acordada con el equipo de la junta de vecinos, buscando una película capaz de convocar tanto a niñas y niños como a personas adultas del sector. La función abrió la temporada y permitió un primer reconocimiento del espacio y de la audiencia barrial.
+
+**Función 2 · *Mi amigo Robot* (Pablo Berger, 2023)**  
+14 de febrero de 2026 · Plaza Dr. Pedro Flores, Macul · Más de 40 asistentes
+
+Función especial de San Valentín, programada para convocar a parejas, familias y personas mayores. La obra de Berger —una historia sin diálogos sobre amistad, soledad y vínculos— resultó pertinente para un público intergeneracional y cerró el ciclo con una asistencia notablemente mayor que la primera función.
+
+![Comunidad reunida en torno a la proyección](hero-coas3.jpg "Plaza Dr. Pedro Flores · Función de San Valentín")
+
+
+Con estas dos jornadas concluyó nuestra primera colaboración con la Junta de Vecinos Villa Santa Elena. El ciclo dejó aprendizajes concretos sobre programación situada, convocatoria territorial y el cine al aire libre como dispositivo de encuentro.
 
 ## Metodología
 
