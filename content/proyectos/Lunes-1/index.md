@@ -1,10 +1,11 @@
 ---
-title: "¿Qué estamos viendo?"
+title: "¿Qué estamos viendo? · Lunes 1°, domingo 7"
 description: "Ciclo de cine en alianza con Librería Proyección — los lunes en Santiago Centro"
 showDate: false
 showReadingTime: false
 showWordCount: false
 tags: ["ciclos", "cine chileno", "santiago centro", "librería proyección", "cultural"]
+date: 2026-04-13
 ---
 
 ## El ciclo

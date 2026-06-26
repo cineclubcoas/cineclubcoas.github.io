@@ -21,6 +21,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://localhost:1313/proyectos/que-estamos-viendo/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://localhost:1313/agenda/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -37,6 +42,11 @@
   </url>
   <url>
     <loc>http://localhost:1313/contacto/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/proyectos/cultura-en-la-educacion/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

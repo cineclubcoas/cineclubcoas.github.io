@@ -5,6 +5,7 @@ showDate: false
 showReadingTime: false
 showWordCount: false
 tags: ["itinerancia", "cine comunitario", "macul", "cultural"]
+date: 2026-01-30
 ---
 
 ## La propuesta

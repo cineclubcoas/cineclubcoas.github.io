@@ -30,11 +30,71 @@
     </item>
     
     <item>
+      <title>Ciclos</title>
+      <link>http://localhost:1313/tags/ciclos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/ciclos/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Cine Chileno</title>
+      <link>http://localhost:1313/tags/cine-chileno/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/cine-chileno/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>Cine Comunitario</title>
       <link>http://localhost:1313/tags/cine-comunitario/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/cine-comunitario/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Cine en La Escuela</title>
+      <link>http://localhost:1313/tags/cine-en-la-escuela/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/cine-en-la-escuela/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Cultural</title>
+      <link>http://localhost:1313/tags/cultural/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/cultural/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Derechos De La Niñez</title>
+      <link>http://localhost:1313/tags/derechos-de-la-ni%C3%B1ez/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/derechos-de-la-ni%C3%B1ez/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Educación</title>
+      <link>http://localhost:1313/tags/educaci%C3%B3n/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/educaci%C3%B3n/</guid>
       <description></description>
       
     </item>
@@ -50,11 +110,41 @@
     </item>
     
     <item>
+      <title>Librería Proyección</title>
+      <link>http://localhost:1313/tags/librer%C3%ADa-proyecci%C3%B3n/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/librer%C3%ADa-proyecci%C3%B3n/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>Macul</title>
       <link>http://localhost:1313/tags/macul/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/macul/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Niñeces</title>
+      <link>http://localhost:1313/tags/ni%C3%B1eces/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/ni%C3%B1eces/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Santiago Centro</title>
+      <link>http://localhost:1313/tags/santiago-centro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/santiago-centro/</guid>
       <description></description>
       
     </item>

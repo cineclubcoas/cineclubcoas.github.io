@@ -311,7 +311,7 @@
 
 <!-- Project Grid -->
 <div class="proyectos-grid" id="proyectosGrid">
-  {{ range .Pages }}
+  {{ range .Pages.ByDate.Reverse }}
   {{ $tags := .Params.tags | default (slice) }}
   {{ $primaryTag := index $tags 0 | default "cultural" }}
   <article class="proyecto-card" data-tags="{{ delimit $tags "," }}">

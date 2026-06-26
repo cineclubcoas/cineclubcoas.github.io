@@ -7,22 +7,82 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>es</language>
     <copyright>© 2026 </copyright>
-    <atom:link href="http://localhost:1313/proyectos/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/proyectos/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>¿Qué estamos viendo?</title>
-      <link>http://localhost:1313/proyectos/que-estamos-viendo/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>Mayo chileno · La Frontera</title>
+      <link>http://localhost:1313/proyectos/la_frontera/</link>
+      <pubDate>Mon, 25 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/proyectos/que-estamos-viendo/</guid>
+      <guid>http://localhost:1313/proyectos/la_frontera/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/proyectos/que-estamos-viendo/feature.jpg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/proyectos/la_frontera/feature.jpeg" />
+    </item>
+    
+    <item>
+      <title>Mayo chileno · Valparaíso, mi amor</title>
+      <link>http://localhost:1313/proyectos/valparaiso/</link>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/proyectos/valparaiso/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/proyectos/valparaiso/feature.jpg" />
+    </item>
+    
+    <item>
+      <title>Mayo chileno · Flor del Carmen</title>
+      <link>http://localhost:1313/proyectos/flor_del_carmen/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/proyectos/flor_del_carmen/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/proyectos/flor_del_carmen/Feature.jpeg" />
+    </item>
+    
+    <item>
+      <title>¿Qué estamos viendo? · Synecdoche, New York</title>
+      <link>http://localhost:1313/proyectos/synechdoc/</link>
+      <pubDate>Mon, 04 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/proyectos/synechdoc/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/proyectos/synechdoc/feature.jpg" />
+    </item>
+    
+    <item>
+      <title>¿Qué estamos viendo? · Kung Fu Master!</title>
+      <link>http://localhost:1313/proyectos/kung-fu-master/</link>
+      <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/proyectos/kung-fu-master/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/proyectos/kung-fu-master/feature.jpeg" />
+    </item>
+    
+    <item>
+      <title>¿Qué estamos viendo? · The Hand y Epistolar</title>
+      <link>http://localhost:1313/proyectos/hand/</link>
+      <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/proyectos/hand/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/proyectos/hand/feature.jpeg" />
+    </item>
+    
+    <item>
+      <title>¿Qué estamos viendo? · Lunes 1°, domingo 7</title>
+      <link>http://localhost:1313/proyectos/lunes-1/</link>
+      <pubDate>Mon, 13 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/proyectos/lunes-1/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/proyectos/lunes-1/feature.jpg" />
     </item>
     
     <item>
       <title>COAS en Tour</title>
       <link>http://localhost:1313/proyectos/coas-en-tour/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 30 Jan 2026 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/proyectos/coas-en-tour/</guid>
       <description></description>
@@ -32,11 +92,11 @@
     <item>
       <title>Cultura en la Educación</title>
       <link>http://localhost:1313/proyectos/cultura-en-la-educacion/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 30 Jan 2026 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/proyectos/cultura-en-la-educacion/</guid>
       <description></description>
-      
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/proyectos/cultura-en-la-educacion/feature.png" />
     </item>
     
   </channel>

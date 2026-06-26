@@ -5,6 +5,7 @@ showDate: false
 showReadingTime: false
 showWordCount: false
 tags: ["cine en la escuela", "educación", "niñeces", "cultural", "macul", "derechos de la niñez"]
+date: 2026-01-30
 ---
 
 ## La propuesta
