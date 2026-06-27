@@ -15,35 +15,44 @@
 
   
   
-    <title> &middot; CineClub COAS</title>
-    <meta name="title" content=" &middot; CineClub COAS">
+    <title>Sistematización · Ciclo de cine con Librería Proyección &middot; CineClub COAS</title>
+    <meta name="title" content="Sistematización · Ciclo de cine con Librería Proyección &middot; CineClub COAS">
+  
+
+  
+  
+    <meta name="description" content="Reflexión crítica sobre las siete funciones del ciclo en alianza con Librería Proyección: qué funcionó, qué no, y qué aprendimos.">
+  
+  
+    <meta name="keywords" content="Cultural,Sistematización,Librería Proyección,">
+  
+  
+  
+  <link rel="canonical" href="http://localhost:1313/blog/sistematizacion-libreria-proyeccion/">
   
 
   
   
   
-  
-  
-  <link rel="canonical" href="http://localhost:1313/blog/">
-  
-    
-      <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="CineClub COAS" />
-  
 
   
-  
-  
-
-  
-  <meta property="og:url" content="http://localhost:1313/blog/">
+  <meta property="og:url" content="http://localhost:1313/blog/sistematizacion-libreria-proyeccion/">
   <meta property="og:site_name" content="CineClub COAS">
-  <meta property="og:title" content="CineClub COAS">
+  <meta property="og:title" content="Sistematización · Ciclo de cine con Librería Proyección">
+  <meta property="og:description" content="Reflexión crítica sobre las siete funciones del ciclo en alianza con Librería Proyección: qué funcionó, qué no, y qué aprendimos.">
   <meta property="og:locale" content="es">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2026-05-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-05-25T00:00:00+00:00">
+    <meta property="article:tag" content="Cultural">
+    <meta property="article:tag" content="Sistematización">
+    <meta property="article:tag" content="Librería Proyección">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="CineClub COAS">
+  <meta name="twitter:title" content="Sistematización · Ciclo de cine con Librería Proyección">
+  <meta name="twitter:description" content="Reflexión crítica sobre las siete funciones del ciclo en alianza con Librería Proyección: qué funcionó, qué no, y qué aprendimos.">
 
   
   
@@ -196,11 +205,11 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "",
-    "name": "",
-    "headline": "",
-    
+    "name": "Sistematización · Ciclo de cine con Librería Proyección",
+    "headline": "Sistematización · Ciclo de cine con Librería Proyección",
+    "description": "Reflexión crítica sobre las siete funciones del ciclo en alianza con Librería Proyección: qué funcionó, qué no, y qué aprendimos.",
     "inLanguage": "es",
-    "url" : "http://localhost:1313/blog/",
+    "url" : "http://localhost:1313/blog/sistematizacion-libreria-proyeccion/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -211,10 +220,10 @@
     
     "dateModified": "2026-05-25T00:00:00\u002b00:00",
     
-    
+    "keywords": ["Cultural","Sistematización","Librería Proyección"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "2"
+    "wordCount": "340"
   }]
   </script>
 
@@ -633,778 +642,529 @@
     --coas-on-secondary-container: #634881;
     --coas-tertiary-fixed: #ffdad9;
     --coas-tertiary-fixed-dim: #f1b8b8;
+    --coas-on-tertiary-fixed: #311213;
     --coas-on-tertiary-fixed-variant: #643c3c;
     --coas-primary-fixed: #f0dbff;
     --coas-outline-variant: #cdc3d0;
     --coas-border-decorative: #C8A8E8;
-    --coas-tag-badge: #E8B0B0;
   }
 
    
-  .blog-film-grain {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.025;
+  .post-film-grain {
+    position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.025;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
+  body { background-color: var(--coas-surface) !important; }
+
    
-  .blog-layout {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    max-width: 1200px;
+  .post-header {
+    max-width: 900px;
     margin: 0 auto;
-    padding: 2rem 1.5rem 5rem;
-  }
-  @media (min-width: 1024px) {
-    .blog-layout {
-      grid-template-columns: 7fr 3fr;
-      gap: 3.5rem;
-    }
-  }
-
-   
-  .blog-header {
-    display: flex;
-    align-items: flex-end;
-    gap: 1rem;
-    margin-bottom: 3rem;
-  }
-  .blog-header-icon {
-    width: 3.5rem;
-    height: 3.5rem;
-    background: var(--coas-secondary-container);
-    border-radius: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: rotate(3deg);
-    flex-shrink: 0;
-  }
-  .blog-header-icon .material-symbols-outlined {
-    font-size: 2rem;
-    color: var(--coas-primary);
-  }
-  .blog-header h1 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    font-weight: 800;
-    color: var(--coas-primary);
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin: 0;
-  }
-  .blog-header p {
-    font-family: 'Be Vietnam Pro', sans-serif;
-    font-size: 1.1rem;
-    color: var(--coas-tertiary);
-    opacity: 0.8;
-    margin: 0.5rem 0 0;
-  }
-
-   
-  .blog-card {
-    background: #ffffff;
-    border-radius: 0.75rem;
-    padding: 1.5rem 2rem;
-    box-shadow: 0 20px 50px -20px rgba(82, 52, 113, 0.08);
-    position: relative;
-    overflow: hidden;
-    transition: box-shadow 0.3s ease;
-  }
-  .blog-card:hover {
-    box-shadow: 0 24px 60px -16px rgba(82, 52, 113, 0.12);
-  }
-  .blog-card-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  @media (min-width: 768px) {
-    .blog-card-inner {
-      flex-direction: row;
-      gap: 2rem;
-    }
-  }
-
-   
-  .blog-date-badge {
-    position: absolute;
-    top: -0.25rem;
-    left: -0.25rem;
-    z-index: 10;
-    background: var(--coas-secondary-container);
-    color: var(--coas-on-secondary-container);
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 700;
+    padding: 0 1.5rem 2.5rem;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(82, 52, 113, 0.15);
-  }
-  .blog-date-badge .month {
-    display: block;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    opacity: 0.7;
-    letter-spacing: 0.05em;
-  }
-  .blog-date-badge .day {
-    display: block;
-    font-size: 1.5rem;
-    line-height: 1.2;
-  }
-
-   
-  .blog-polaroid {
-    position: relative;
-    flex-shrink: 0;
-  }
-  .blog-polaroid-frame {
-    background: white;
-    padding: 0.75rem;
-    padding-bottom: 2.5rem;
-    box-shadow: 0 8px 24px rgba(34, 27, 13, 0.12);
-    border-radius: 2px;
-    transition: transform 0.5s ease;
-    width: 100%;
-    max-width: 240px;
-  }
-  .blog-card:nth-child(odd) .blog-polaroid-frame {
-    transform: rotate(1deg);
-  }
-  .blog-card:nth-child(even) .blog-polaroid-frame {
-    transform: rotate(-2deg);
-  }
-  .blog-card:hover .blog-polaroid-frame {
-    transform: rotate(0deg);
-  }
-  .blog-polaroid-img {
-    width: 100%;
-    height: 16rem;
-    object-fit: cover;
-    border-radius: 2px;
-    filter: grayscale(100%);
-    transition: filter 0.7s ease;
-  }
-  .blog-card:hover .blog-polaroid-img {
-    filter: grayscale(0%);
-  }
-   
-  .blog-polaroid-placeholder {
-    width: 100%;
-    height: 16rem;
-    background: var(--coas-surface-container-high);
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .blog-polaroid-placeholder .material-symbols-outlined {
-    font-size: 3.5rem;
-    color: var(--coas-secondary);
-    opacity: 0.4;
-  }
-
-   
-  .blog-card-body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
   }
-  .blog-card-body h2 {
+  .post-tag-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: var(--coas-tertiary-fixed-dim);
+    color: var(--coas-on-tertiary-fixed);
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--coas-primary);
-    line-height: 1.25;
-    margin: 0 0 0.75rem;
-  }
-  .blog-card-body h2 a {
-    color: inherit;
-    text-decoration: none;
-  }
-  .blog-card-body h2 a:hover {
-    opacity: 0.85;
-  }
-  .blog-card-body .summary {
-    font-family: 'Be Vietnam Pro', sans-serif;
-    font-size: 0.95rem;
-    color: var(--coas-on-surface-variant);
-    line-height: 1.7;
-    margin: 0 0 1rem;
-  }
-  .blog-card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-bottom: 1rem;
-  }
-  .blog-card-tags a {
-    font-family: 'Be Vietnam Pro', sans-serif;
-    font-size: 0.7rem;
     font-weight: 600;
-    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     border-radius: 9999px;
-    background: rgba(241, 184, 184, 0.4);
-    color: var(--coas-tertiary);
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-  .blog-card-tags a:hover {
-    background: var(--coas-tertiary-fixed-dim);
-  }
-
-   
-  .blog-read-more {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.6rem 1.5rem;
-    background: var(--coas-tertiary-fixed-dim);
-    color: var(--coas-on-tertiary-fixed-variant);
-    border-radius: 9999px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-    text-decoration: none;
-    transition: opacity 0.2s, transform 0.1s;
-    width: fit-content;
-  }
-  .blog-read-more:hover { opacity: 0.88; }
-  .blog-read-more:active { transform: scale(0.96); }
-
-   
-  .blog-pagination {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(205, 195, 208, 0.3);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-  }
-  .blog-pagination a {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--coas-primary);
     text-decoration: none;
     transition: opacity 0.2s;
   }
-  .blog-pagination a:hover { opacity: 0.6; }
-  .blog-pagination .disabled {
-    opacity: 0.25;
-    pointer-events: none;
-  }
-
-   
-  .blog-sidebar { display: flex; flex-direction: column; gap: 2.5rem; }
-
-   
-  .sidebar-about {
-    background: var(--coas-surface-container-low);
-    border-radius: 0.75rem;
-    padding: 2rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .sidebar-about::before {
-    content: '';
-    position: absolute;
-    top: -2.5rem;
-    right: -2.5rem;
-    width: 8rem;
-    height: 8rem;
-    background: rgba(221, 188, 253, 0.2);
-    border-radius: 50%;
-    filter: blur(3rem);
-  }
-  .sidebar-about-avatar {
-    width: 7rem;
-    height: 7rem;
-    margin: 0 auto 1.25rem;
-    background: white;
-    border-radius: 50%;
-    padding: 0.5rem;
-    box-shadow: 0 4px 16px rgba(82, 52, 113, 0.1);
-    ring: 4px solid var(--coas-secondary-container);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    outline: 4px solid var(--coas-secondary-container);
-  }
-  .sidebar-about-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 50%;
-  }
-  .sidebar-about-avatar .material-symbols-outlined {
-    font-size: 2.5rem;
-    color: var(--coas-secondary);
-    opacity: 0.6;
-  }
-  .sidebar-about h3 {
+  .post-tag-badge:hover { opacity: 0.8; }
+  .post-header h1 {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
     color: var(--coas-primary);
-    margin: 0 0 0.75rem;
-  }
-  .sidebar-about p {
-    font-family: 'Be Vietnam Pro', sans-serif;
-    font-size: 0.85rem;
-    color: var(--coas-on-surface-variant);
-    line-height: 1.65;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 800px;
     margin: 0;
-    position: relative;
-    z-index: 1;
   }
-
-   
-  .sidebar-widget h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--coas-primary);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 0 0 1rem;
-  }
-  .sidebar-widget h3 .material-symbols-outlined {
-    color: var(--coas-tertiary);
-    font-size: 1.25rem;
-  }
-  .sidebar-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  .sidebar-tags a {
-    font-family: 'Be Vietnam Pro', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.35rem 1rem;
-    border-radius: 9999px;
-    background: rgba(241, 184, 184, 0.4);
-    color: var(--coas-tertiary);
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-  .sidebar-tags a:hover {
-    background: var(--coas-tertiary-fixed-dim);
-  }
-
-   
-  .sidebar-archive-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .sidebar-archive-list li a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem 0.6rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-  .sidebar-archive-list li a:hover {
-    background: var(--coas-surface-container-high);
-  }
-  .sidebar-archive-list .archive-label {
+  .post-meta {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     font-family: 'Be Vietnam Pro', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 500;
+    font-size: 0.9rem;
     color: var(--coas-on-surface-variant);
+    font-weight: 500;
+    flex-wrap: wrap;
+    justify-content: center;
   }
-  .sidebar-archive-list li a:hover .archive-label {
-    color: var(--coas-primary);
+  .post-meta-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--coas-outline-variant);
+    flex-shrink: 0;
   }
-  .sidebar-archive-list .archive-label .material-symbols-outlined {
+
+   
+  .post-feature {
+    max-width: 1100px;
+    margin: 0 auto 3rem;
+    padding: 0 1.5rem;
+  }
+  .post-feature-inner {
+    position: relative;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 40px 80px -20px rgba(82, 52, 113, 0.15);
+  }
+  .post-feature img {
+    width: 100%;
+    max-height: 580px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+  }
+  .post-feature-inner:hover img {
+    transform: scale(1.01);
+  }
+  .post-feature-inner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 0.75rem;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+    pointer-events: none;
+  }
+   
+  .post-feature-placeholder {
+    width: 100%;
+    height: 320px;
+    background: linear-gradient(135deg, var(--coas-surface-container-low), var(--coas-surface-container-high));
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .post-feature-placeholder .material-symbols-outlined {
+    font-size: 5rem;
     color: var(--coas-secondary);
-    opacity: 0.6;
-    font-size: 1.2rem;
+    opacity: 0.2;
   }
-  .sidebar-archive-count {
+
+   
+  .post-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+    color: rgba(34, 27, 13, 0.9);
+    font-weight: 300;
+  }
+
+   
+  .post-body > p:first-of-type::first-letter {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: var(--coas-primary);
+    float: left;
+    margin-right: 0.75rem;
+    margin-top: 0.25rem;
+    line-height: 0.85;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .post-body p {
+    margin: 0 0 1.5rem;
+  }
+
+  .post-body h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--coas-primary);
+    margin: 3rem 0 1rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  .post-body h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--coas-tertiary);
+    margin: 2.5rem 0 0.75rem;
+    line-height: 1.3;
+  }
+
+  .post-body a {
+    color: var(--coas-primary);
+    text-decoration: underline;
+    text-decoration-color: var(--coas-border-decorative);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s;
+  }
+  .post-body a:hover {
+    text-decoration-color: var(--coas-primary);
+  }
+
+  .post-body strong { font-weight: 600; color: var(--coas-on-surface); }
+  .post-body em { font-style: italic; }
+
+  .post-body blockquote {
+    margin: 2rem 0;
+    padding: 1.25rem 2rem;
+    border-left: 4px solid var(--coas-primary);
+    background: var(--coas-surface-container-low);
+    border-radius: 0 0.75rem 0.75rem 0;
+    font-style: italic;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--coas-primary-container);
+    line-height: 1.6;
+  }
+  .post-body blockquote p { margin: 0; }
+
+  .post-body img {
+    width: 100%;
+    border-radius: 0.75rem;
+    margin: 2rem 0 0.5rem;
+    box-shadow: 0 8px 24px rgba(34, 27, 13, 0.08);
+  }
+
+   
+  .post-body figure {
+    margin: 2.5rem 0;
+  }
+  .post-body figure img {
+    margin-bottom: 0;
+  }
+  .post-body figcaption {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--coas-on-surface-variant);
+    font-style: italic;
+    margin-top: 0.75rem;
+  }
+
+  .post-body ul, .post-body ol {
+    margin: 1rem 0 1.5rem 1.5rem;
+  }
+  .post-body li {
+    margin-bottom: 0.5rem;
+  }
+
+  .post-body hr {
+    border: none;
+    height: 1px;
+    background: var(--coas-outline-variant);
+    opacity: 0.3;
+    margin: 3rem 0;
+  }
+
+  .post-body code {
+    font-size: 0.9em;
+    background: var(--coas-surface-container-low);
+    padding: 0.15em 0.4em;
+    border-radius: 0.35rem;
+  }
+  .post-body pre {
+    background: var(--coas-on-surface);
+    color: var(--coas-surface);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  .post-body pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+  }
+
+   
+  .post-author-box {
+    max-width: 720px;
+    margin: 4rem auto 0;
+    padding: 0 1.5rem;
+  }
+  .post-author-box-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 2.5rem;
+    background: rgba(221, 188, 253, 0.2);
+    border-radius: 0.75rem;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .post-author-box-inner {
+      flex-direction: row;
+      text-align: left;
+      gap: 2rem;
+    }
+  }
+  .post-author-avatar {
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    outline: 4px solid rgba(107, 76, 138, 0.15);
+    flex-shrink: 0;
+  }
+  .post-author-avatar-placeholder {
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 50%;
+    background: var(--coas-surface-container-high);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    outline: 4px solid rgba(107, 76, 138, 0.15);
+  }
+  .post-author-avatar-placeholder .material-symbols-outlined {
+    font-size: 2.5rem;
+    color: var(--coas-secondary);
+    opacity: 0.5;
+  }
+  .post-author-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--coas-primary);
+    margin: 0 0 0.35rem;
+  }
+  .post-author-bio {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.9rem;
+    color: var(--coas-on-surface-variant);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+   
+  .post-related {
+    max-width: 1100px;
+    margin: 5rem auto 0;
+    padding: 0 1.5rem;
+  }
+  .post-related h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--coas-primary);
+    margin: 0 0 2rem;
+  }
+  .post-related-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .post-related-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .post-related-card {
+    display: block;
+    background: var(--coas-surface-container-low);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .post-related-card:hover {
+    background: var(--coas-surface-container-high);
+    transform: translateY(-2px);
+  }
+  .post-related-card-img {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+  }
+  .post-related-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .post-related-card:hover .post-related-card-img img {
+    transform: scale(1.05);
+  }
+  .post-related-card-img-placeholder {
+    aspect-ratio: 16/9;
+    background: var(--coas-surface-container-high);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .post-related-card-img-placeholder .material-symbols-outlined {
+    font-size: 2.5rem;
+    color: var(--coas-secondary);
+    opacity: 0.25;
+  }
+  .post-related-card-body {
+    padding: 1.5rem;
+  }
+  .post-related-card-tag {
     font-family: 'Be Vietnam Pro', sans-serif;
     font-size: 0.7rem;
-    font-weight: 600;
-    background: var(--coas-secondary-container);
-    color: var(--coas-on-secondary-container);
-    padding: 0.15rem 0.6rem;
-    border-radius: 9999px;
-  }
-
-   
-  .sidebar-newsletter {
-    background: var(--coas-primary);
-    color: white;
-    border-radius: 0.75rem;
-    padding: 1.75rem;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 12px 40px rgba(82, 52, 113, 0.2);
-  }
-  .sidebar-newsletter::after {
-    content: 'mail';
-    font-family: 'Material Symbols Outlined';
-    position: absolute;
-    bottom: -0.5rem;
-    right: -0.5rem;
-    font-size: 6rem;
-    opacity: 0.08;
-    pointer-events: none;
-    font-variation-settings: 'FILL' 1;
-  }
-  .sidebar-newsletter h4 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.2rem;
     font-weight: 700;
+    color: var(--coas-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .post-related-card-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--coas-primary);
+    line-height: 1.3;
     margin: 0 0 0.5rem;
   }
-  .sidebar-newsletter p {
+  .post-related-card-summary {
     font-family: 'Be Vietnam Pro', sans-serif;
     font-size: 0.85rem;
-    opacity: 0.8;
-    line-height: 1.6;
-    margin: 0 0 1.25rem;
+    color: var(--coas-on-surface-variant);
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
-  .sidebar-newsletter input[type="email"] {
-    width: 100%;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 9999px;
-    padding: 0.55rem 1rem;
-    font-size: 0.85rem;
-    color: white;
-    outline: none;
-    font-family: 'Be Vietnam Pro', sans-serif;
-    margin-bottom: 0.75rem;
-    box-sizing: border-box;
+
+   
+  .post-back-link {
+    max-width: 720px;
+    margin: 3rem auto 0;
+    padding: 0 1.5rem;
   }
-  .sidebar-newsletter input[type="email"]::placeholder {
-    color: rgba(255,255,255,0.4);
-  }
-  .sidebar-newsletter input[type="email"]:focus {
-    box-shadow: 0 0 0 2px var(--coas-tertiary-fixed-dim);
-  }
-  .sidebar-newsletter button {
-    width: 100%;
-    background: var(--coas-tertiary-fixed-dim);
-    color: var(--coas-on-tertiary-fixed-variant);
-    border: none;
-    border-radius: 9999px;
-    padding: 0.55rem 1rem;
+  .post-back-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 700;
-    font-size: 0.85rem;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transition: transform 0.1s;
+    font-size: 0.9rem;
+    color: var(--coas-primary);
+    text-decoration: none;
+    transition: opacity 0.2s;
   }
-  .sidebar-newsletter button:active { transform: scale(0.96); }
-
-   
-  .blog-empty {
-    text-align: center;
-    padding: 4rem 2rem;
-    color: var(--coas-on-surface-variant);
-    font-family: 'Be Vietnam Pro', sans-serif;
-  }
-  .blog-empty .material-symbols-outlined {
-    font-size: 4rem;
-    color: var(--coas-secondary);
-    opacity: 0.3;
-    display: block;
-    margin-bottom: 1rem;
-  }
-
-   
-  body { background-color: var(--coas-surface) !important; }
+  .post-back-link a:hover { opacity: 0.65; }
+  .post-back-link a .material-symbols-outlined { font-size: 1.1rem; }
 </style>
 
-<div class="blog-film-grain"></div>
+<div class="post-film-grain"></div>
 
 
-<header class="blog-header" style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem 0;">
-  <div class="blog-header-icon">
-    <span class="material-symbols-outlined">history_edu</span>
-  </div>
-  <div>
-    <h1>La Bitácora de COAS</h1>
-    <p>Reseñas, opiniones y crónicas de nuestra comunidad.</p>
+
+
+
+
+
+<header class="post-header">
+
+  
+  
+    
+    <a href="http://localhost:1313/tags/cultural/" class="post-tag-badge">Cultural</a>
+  
+
+  <h1>Sistematización · Ciclo de cine con Librería Proyección</h1>
+
+  <div class="post-meta">
+    
+    <span>25 de Mayo, 2026</span>
+    <span class="post-meta-dot"></span>
+    <span>2 min de lectura</span>
   </div>
 </header>
 
 
-<div class="blog-layout">
-
+<div class="post-feature">
   
-  <section>
-
-    
-
-    
-
-    
-
-      
-      
-      
-      
-      
-
-      
-      
-      
-
-      <article class="blog-card" style="margin-bottom:2.5rem;">
-        <div class="blog-card-inner">
-
-          
-          <div class="blog-polaroid">
-            <div class="blog-date-badge" style="transform:ZgotmplZ;">
-              <span class="month">May</span>
-              <span class="day">25</span>
-            </div>
-
-            <div class="blog-polaroid-frame">
-              
-              
-              
-                
-                <div class="blog-polaroid-placeholder">
-                  <span class="material-symbols-outlined">movie_filter</span>
-                </div>
-              
-            </div>
-          </div>
-
-          
-          <div class="blog-card-body">
-            
-              <div class="blog-card-tags">
-                
-                  <a href="http://localhost:1313/tags/cultural/">Cultural</a>
-                
-                  <a href="http://localhost:1313/tags/sistematizaci%C3%B3n/">Sistematización</a>
-                
-                  <a href="http://localhost:1313/tags/librer%C3%ADa-proyecci%C3%B3n/">Librería Proyección</a>
-                
-              </div>
-            
-
-            <h2><a href="/blog/sistematizacion-libreria-proyeccion/">Sistematización · Ciclo de cine con Librería Proyección</a></h2>
-
-            
-
-            <a href="/blog/sistematizacion-libreria-proyeccion/" class="blog-read-more">Leer más...</a>
-          </div>
-
-        </div>
-      </article>
-
-    
-
-      
-      
-      
-      
-      
-
-      
-      
-      
-
-      <article class="blog-card" style="margin-bottom:2.5rem;">
-        <div class="blog-card-inner">
-
-          
-          <div class="blog-polaroid">
-            <div class="blog-date-badge" style="transform:ZgotmplZ;">
-              <span class="month">Mar</span>
-              <span class="day">25</span>
-            </div>
-
-            <div class="blog-polaroid-frame">
-              
-              
-              
-                
-                <div class="blog-polaroid-placeholder">
-                  <span class="material-symbols-outlined">movie_filter</span>
-                </div>
-              
-            </div>
-          </div>
-
-          
-          <div class="blog-card-body">
-            
-              <div class="blog-card-tags">
-                
-                  <a href="http://localhost:1313/tags/noticias/">noticias</a>
-                
-                  <a href="http://localhost:1313/tags/coas/">coas</a>
-                
-              </div>
-            
-
-            <h2><a href="/blog/bienvenidos-al-blog/">Bienvenidos al blog de COAS</a></h2>
-
-            
-              <p class="summary">Inauguramos nuestro espacio digital de reflexión cinematográfica y comunitaria</p>
-            
-
-            <a href="/blog/bienvenidos-al-blog/" class="blog-read-more">Leer más...</a>
-          </div>
-
-        </div>
-      </article>
-
-    
-
-    
-    
-
-  </section>
-
   
-  <aside class="blog-sidebar">
-
-    
-    <div class="sidebar-about">
-      <div class="sidebar-about-avatar">
-        
-        
-        
-          <span class="material-symbols-outlined">theater_comedy</span>
-        
-      </div>
-      <h3>Tras el telón</h3>
-      <p>Bienvenido a nuestra bitácora digital. Aquí guardamos los fragmentos de cine que nos mueven, desde columnas de opinión hasta crónicas de barrio.</p>
+    <div class="post-feature-placeholder">
+      <span class="material-symbols-outlined">movie_filter</span>
     </div>
+  
+</div>
 
-    
-    
-    
-      
-        
-          
-        
-          
-        
-          
-        
-      
-    
-      
-        
-          
-        
-          
-        
-      
-    
-    
 
+<article class="post-body">
+  <p>Entre el 13 de abril y el 25 de mayo de 2026 realizamos siete funciones consecutivas, cada lunes, en alianza con la <strong>Librería Proyección</strong> (San Francisco 51, Santiago Centro). Este documento es la primera sistematización formal de COAS: un ejercicio de mirar hacia atrás no para celebrarnos, sino para entender qué pasó y por qué.</p>
+<p>El ciclo tuvo dos fases. <strong>«¿Qué estamos viendo?»</strong> (sesiones 1–4) propuso una curaduría abierta y diversa en torno a la pregunta por la apreciación cinematográfica. <strong>«Mayo chileno»</strong> (sesiones 5–7) estrechó el foco al cine chileno, con obras gestionadas a través de la Cineteca Nacional.</p>
+
+<h2 class="relative group">Lo que aprendimos
+    <div id="lo-que-aprendimos" class="anchor"></div>
     
-      <div class="sidebar-widget">
-        <h3>
-          <span class="material-symbols-outlined">local_activity</span>
-          Cartelera de temas
-        </h3>
-        <div class="sidebar-tags">
-          
-            <a href="http://localhost:1313/tags/cultural/">Cultural</a>
-          
-            <a href="http://localhost:1313/tags/sistematizaci%C3%B3n/">Sistematización</a>
-          
-            <a href="http://localhost:1313/tags/librer%C3%ADa-proyecci%C3%B3n/">Librería Proyección</a>
-          
-            <a href="http://localhost:1313/tags/noticias/">noticias</a>
-          
-            <a href="http://localhost:1313/tags/coas/">coas</a>
-          
-        </div>
-      </div>
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#lo-que-aprendimos" aria-label="Ancla">#</a>
+    </span>
     
+</h2>
+<p>A lo largo de las siete jornadas confirmamos —y en un caso refutamos— varias intuiciones sobre nuestra propia práctica de mediación:</p>
+<ul>
+<li><strong>La complejidad de la obra es motor de conversación.</strong> Las películas difíciles, como las de Varda y Kaufman, generaron los conversatorios más densos y largos.</li>
+<li><strong>El factor decisivo de la mediación no es la cantidad de público, sino el tiempo.</strong> Una sala llena no garantiza conversación, y un grupo pequeño puede dar un diálogo más íntimo y rico. Lo descubrimos cuando una función con la sala repleta apenas alcanzó para unas palabras de cierre.</li>
+<li><strong>El horario condiciona la convocatoria</strong> de forma independiente de la curaduría: una función temprana deja fuera al público que trabaja.</li>
+<li><strong>El cine chileno potencia el registro territorial</strong> de la mediación, acercando la conversación al territorio del que el público forma parte.</li>
+<li><strong>La alianza generó beneficio mutuo medible:</strong> la relación con la librería se equilibró con el tiempo, evolucionando hasta un reparto 50/50 de los aportes voluntarios.</li>
+</ul>
+<p>Trabajar en un espacio prestado nos enseñó que la gestión del tiempo es la restricción estructural de este tipo de mediación. No es un detalle logístico: es lo que decide si hay conversatorio o no.</p>
 
+<h2 class="relative group">El documento completo
+    <div id="el-documento-completo" class="anchor"></div>
     
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#el-documento-completo" aria-label="Ancla">#</a>
+    </span>
     
-      
-      
-        
-        
-        
-        
-        
-        
+</h2>
+<p>La sistematización completa —con la reconstrucción sesión a sesión, la interpretación crítica y los puntos de llegada— está disponible para su lectura y descarga:</p>
+<a
+  class="!rounded-md bg-primary-600 px-4 py-2 !text-neutral !no-underline hover:!bg-primary-500 dark:bg-primary-800 dark:hover:!bg-primary-700"
+  href="sistematizacion-libreria-proyeccion.pdf"
+  target="_blank"
+  
+  role="button">
+  
+Abrir documento (PDF)
 
-        
-          
-        
-      
-        
-        
-        
-        
-        
-        
+</a>
 
-        
-          
-        
-      
+<object data="sistematizacion-libreria-proyeccion.pdf" type="application/pdf" width="100%" height="800px" style="border: 1px solid var(--color-neutral-300); border-radius: 8px; margin-top: 1rem;">
+  <p>Tu navegador no puede mostrar el PDF embebido. <a href="sistematizacion-libreria-proyeccion.pdf" target="_blank">Descárgalo aquí</a>.</p>
+</object>
+</article>
 
-      <div class="sidebar-widget">
-        <h3>
-          <span class="material-symbols-outlined">movie_filter</span>
-          La Cineteca
-        </h3>
-        <ul class="sidebar-archive-list">
-          
-            <li>
-              <a href="http://localhost:1313/blog/">
-                <span class="archive-label">
-                  <span class="material-symbols-outlined">folder</span>
-                  Marzo 2026
-                </span>
-                <span class="sidebar-archive-count">1</span>
-              </a>
-            </li>
-          
-            <li>
-              <a href="http://localhost:1313/blog/">
-                <span class="archive-label">
-                  <span class="material-symbols-outlined">folder</span>
-                  Mayo 2026
-                </span>
-                <span class="sidebar-archive-count">1</span>
-              </a>
-            </li>
-          
-        </ul>
-      </div>
-    
 
-    
-    </div>
 
-  </aside>
 
+
+
+
+
+
+<div class="post-back-link">
+  <a href="http://localhost:1313/blog/">
+    <span class="material-symbols-outlined">arrow_back_ios</span>
+    Volver a la Bitácora
+  </a>
 </div>
 
 

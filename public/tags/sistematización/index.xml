@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sistematización on CineClub COAS</title>
+    <link>http://localhost:1313/tags/sistematizaci%C3%B3n/</link>
+    <description>Recent content in Sistematización on CineClub COAS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es</language>
+    <copyright>© 2026 </copyright>
+    <lastBuildDate>Mon, 25 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/sistematizaci%C3%B3n/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Sistematización · Ciclo de cine con Librería Proyección</title>
+      <link>http://localhost:1313/blog/sistematizacion-libreria-proyeccion/</link>
+      <pubDate>Mon, 25 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/sistematizacion-libreria-proyeccion/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>
